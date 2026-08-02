@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- gold diya on maroon circle — legible at 16px -->
+  <circle cx="16" cy="16" r="16" fill="#43090C"/>
+  <path d="M16 5.5 C 19.4 9.5 20.2 13 16 17 C 11.8 13 12.6 9.5 16 5.5 Z" fill="#E9C46A"/>
+  <path d="M16 9.5 C 17.8 11.6 18 13.4 16 15.4 C 14 13.4 14.2 11.6 16 9.5 Z" fill="#B3362B"/>
+  <path d="M5.5 19.5 H26.5 C25.4 24.6 21.6 27 16 27 C10.4 27 6.6 24.6 5.5 19.5 Z" fill="#C9962E"/>
+  <path d="M5.5 19.5 H26.5" stroke="#E9C46A" stroke-width="1.3" stroke-linecap="round"/>
+</svg>
