@@ -192,9 +192,11 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 
 .couple-wrap { position: relative; margin: 4px auto 16px; width: min(300px, 72vw); }
 .couple-art { width: 100%; display: block; border-radius: 8px; }
-.couple-photo { display: none; width: 100%; border-radius: 10px; }
-.couple-wrap.has-photo .couple-art { display: none; }
-.couple-wrap.has-photo .couple-photo { display: block; }
+.couple-photo { width: 100%; display: block; border-radius: 10px; }
+/* the illustration is the default; the drawn placeholder only returns if it fails to load */
+.couple-art { display: none; }
+.couple-wrap.no-photo .couple-art { display: block; }
+.couple-wrap.no-photo picture { display: none; }
 .p-native { font-size: clamp(19px, 5vw, 24px); color: var(--maroon-soft); }
 .bride .p-native { font-family: var(--dev); } .groom .p-native { font-family: var(--tel); }
 .p-name { font-size: clamp(30px, 8vw, 44px); font-weight: 600; letter-spacing: .05em; line-height: 1.1; color: var(--maroon); }
@@ -467,7 +469,10 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         <circle cx="250" cy="446.5" r="1.7" fill="#F5C36A" filter="url(#glow)"/>
         <circle cx="290" cy="360" r="1.8" fill="#D9B45A"/><circle cx="316" cy="349" r="3.6" fill="#C4526B"/><circle cx="316" cy="349" r="1.4" fill="#D9B45A"/>
       </svg>
-        <img class="couple-photo" id="couple-photo" alt="Indu and Ram" src="assets/couple.png" loading="lazy" decoding="async">
+        <picture>
+          <source srcset="assets/couple.webp" type="image/webp">
+          <img class="couple-photo" id="couple-photo" alt="Indu and Ram" src="assets/couple.png" decoding="async">
+        </picture>
       </div>
         <div class="bride rv d2">
           <p class="p-native" lang="mr">इंदु गुज्जर</p>
@@ -607,14 +612,14 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   <footer>23 · 08 · 2026</footer>
 </main>
 
-<audio id="bgm" src="music.mp3#t=35" preload="auto"></audio>
+<audio id="bgm" src="music.mp3" loop preload="auto"></audio>
 <button id="music" aria-label="Play music" title="Play music">
   <svg class="note" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
   </svg>
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
 </button>
-<div class="music-hint" id="music-hint">Tap for music ♪</div>
+<div class="music-hint" id="music-hint">♪ Music on — tap to mute</div>
 
 <script>
 (function () {
@@ -744,8 +749,10 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   (function () {
     var img = document.getElementById('couple-photo');
     if (!img) return;
-    img.addEventListener('load', function () { img.parentNode.classList.add('has-photo'); });
-    img.addEventListener('error', function () { img.remove(); });  // keep the drawn placeholder
+    img.addEventListener('error', function () {
+      var wrap = img.closest('.couple-wrap');
+      if (wrap) wrap.classList.add('no-photo');   // fall back to the drawn couple
+    });
   })();
 
   /* ---------- lazy map ---------- */
@@ -863,48 +870,38 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         if (k === 1) { clearInterval(fade); if (done) done(); }
       }, 40);
     }
-    var START = 35, seeded = false;
-    function seed() {
-      if (seeded) return;
-      if (audio.readyState >= 1 && isFinite(audio.duration) && audio.currentTime < START - 0.5) {
-        try { audio.currentTime = START; seeded = true; } catch (e) {}
-      }
-    }
-    audio.addEventListener('loadedmetadata', seed);
-    audio.addEventListener('playing', seed);
     function play() {
       audio.volume = 0;
-      seed();
       var pr = audio.play();
       if (pr && pr.catch) pr.catch(function () { playing = false; btn.classList.remove('playing'); });
       ramp(0.62, 1400);
       playing = true; btn.classList.add('playing');
       btn.setAttribute('aria-label', 'Pause music'); btn.title = 'Pause music';
-      try { sessionStorage.setItem('bgm', '1'); } catch (e) {}
+      try { localStorage.setItem('bgm', '1'); } catch (e) {}
     }
     function pause() {
       ramp(0, 600, function () { audio.pause(); });
       playing = false; btn.classList.remove('playing');
       btn.setAttribute('aria-label', 'Play music'); btn.title = 'Play music';
-      try { sessionStorage.setItem('bgm', '0'); } catch (e) {}
+      try { localStorage.setItem('bgm', '0'); } catch (e) {}
     }
     btn.addEventListener('click', function () { playing ? pause() : play(); });
-    // loop back to the same starting point rather than the track's beginning
-    audio.addEventListener('ended', function () {
-      try { audio.currentTime = START; } catch (e) {}
-      audio.play().catch(function () {});
+    addEventListener('keydown', function (e) {
+      if ((e.key === 'm' || e.key === 'M') && !/input|textarea/i.test((e.target.tagName || ''))) {
+        playing ? pause() : play();
+      }
     });
     // try to start straight away; browsers that block it fall through to the first tap
     audio.addEventListener('canplay', function once() {
       audio.removeEventListener('canplay', once);
-      var pref = null; try { pref = sessionStorage.getItem('bgm'); } catch (e) {}
+      var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
       if (pref !== '0') play();
     });
     var kicked = false, evs = ['pointerdown', 'touchstart', 'keydown'];
     function kick() {
       if (kicked) return; kicked = true;
       evs.forEach(function (e) { removeEventListener(e, kick); });
-      var pref = null; try { pref = sessionStorage.getItem('bgm'); } catch (e) {}
+      var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
       if (pref !== '0') play();
     }
     evs.forEach(function (e) { addEventListener(e, kick, { passive: true }); });
