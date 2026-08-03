@@ -118,9 +118,12 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 @keyframes toranDrop { to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .toran { animation: none; transform: none; } }
 .invocation { font-family: var(--dev); font-size: clamp(16px, 4vw, 21px); color: var(--gold-bright); }
-.shrine { position: relative; width: min(268px, 66vw); margin: 12px auto 2px; }
+.shrine { position: relative; width: min(300px, 74vw); margin: 6px auto 2px; }
+@media (min-width: 760px) { .shrine { width: 340px; } }
 .shrine-arch { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 16px rgba(233,196,106,.22)); }
-.medallion { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); width: 62%;
+.shrine-inv { position: absolute; left: 0; right: 0; top: 20.5%; font-family: var(--dev);
+  font-size: clamp(13px, 3.3vw, 16px); color: var(--gold-bright); letter-spacing: .04em; }
+.medallion { position: absolute; left: 50%; bottom: 5%; transform: translateX(-50%); width: 66%;
   filter: drop-shadow(0 0 15px rgba(233,196,106,.45)); }
 .medallion path, .medallion circle { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .hero.in .medallion path, .hero.in .medallion circle { animation: draw 2.6s ease .3s forwards; }
@@ -150,6 +153,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 
 /* ============ jharokha panels (midnight court architecture, warm palette) ============ */
 .panel { width: 100%; max-width: 620px; position: relative; }
+@media (min-width: 900px) { .panel { max-width: 680px; } section { padding: 12vh 18px; } }
 .arch-top { display: block; width: 100%; height: auto; margin-bottom: -1px; }
 .panel-body {
   background: linear-gradient(170deg, #FDF7E9 0%, var(--cream) 45%, var(--cream-deep) 100%);
@@ -329,8 +333,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       </g>
     </svg></div>
 
-    <p class="invocation rv">॥ श्री गणेशाय नमः ॥</p>
-    <div class="shrine rv d1">
+    <div class="shrine rv">
       <svg class="shrine-arch" viewBox="0 -26 660 700" fill="none" aria-hidden="true">
         <g stroke="#C9962E" stroke-width="4" stroke-linejoin="round">
           <use href="#cusparch"/>
@@ -342,6 +345,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         <path d="M330,-27 L330,-6" stroke="#E9C46A" stroke-width="2.6"/>
         <path d="M300,662 L360,662" stroke="#E9C46A" stroke-width="3" opacity=".7"/>
       </svg>
+      <p class="shrine-inv">॥ श्री गणेशाय नमः ॥</p>
       <svg class="medallion" viewBox="0 0 220 236" fill="none" aria-label="Lord Ganesha">
       <g stroke="#E9C46A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="110" cy="116" r="96" stroke-width="1.4" opacity=".8" pathLength="1"/>
@@ -684,7 +688,8 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     var secs = Array.prototype.map.call(document.querySelectorAll('main > section'), function (s) {
       return s.offsetTop + s.offsetHeight / 2;
     });
-    var mL = Math.max(12, W * 0.03), mR = W - mL, mid = W / 2;
+    var mid = W / 2, half = Math.min(W / 2 - 14, 300);
+    var mL = mid - half, mR = mid + half;
     function weave(startX, flip) {
       var d = 'M ' + startX + ' 0', px = startX, prevY = 0;
       secs.forEach(function (y, i) {
