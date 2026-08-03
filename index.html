@@ -240,7 +240,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 
 /* ============ finale ============ */
 .finale { min-height: 100vh; overflow: hidden; }
-.knot { width: 208px; margin-bottom: 16px; }
+.knot { width: min(250px, 68vw); margin-bottom: 18px; filter: drop-shadow(0 0 16px rgba(233,196,106,.3)); }
 .knot .ka, .knot .kb { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .finale.in .ka { animation: draw 1.7s ease .3s forwards; }
 .finale.in .kb { animation: draw 1.7s ease .85s forwards; }
@@ -572,12 +572,25 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
 
   <!-- ================= FINALE ================= -->
   <section class="finale" id="finale">
-    <svg class="knot rv" viewBox="0 0 200 110" aria-label="Two threads tied into one knot">
-      <path class="ka" pathLength="1" d="M8,26 C 60,26 66,74 100,74 C 120,74 128,58 122,46 C 116,36 100,38 96,50 C 92,64 104,74 120,72" fill="none" stroke="#E8B84B" stroke-width="4" stroke-linecap="round"/>
-      <path class="kb" pathLength="1" d="M8,84 C 60,84 66,36 100,36 C 120,36 128,52 122,64 C 116,74 100,72 96,60 C 92,46 104,36 120,38" fill="none" stroke="#D96A9E" stroke-width="4" stroke-linecap="round"/>
+    <svg class="knot rv" viewBox="0 0 240 130" aria-label="Two threads tied through two rings">
+      <defs>
+        <linearGradient id="ringGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F4DDA0"/><stop offset="45%" stop-color="#E9C46A"/><stop offset="100%" stop-color="#B8862B"/>
+        </linearGradient>
+      </defs>
+      <!-- threads flowing in and tying through the rings -->
+      <path class="ka" pathLength="1" d="M6,44 C 46,34 66,50 88,64 C 104,74 116,80 128,72 C 140,64 146,50 160,48"
+            fill="none" stroke="#E8B84B" stroke-width="3.4" stroke-linecap="round"/>
+      <path class="kb" pathLength="1" d="M234,86 C 194,96 174,80 152,66 C 136,56 124,50 112,58 C 100,66 94,80 80,82"
+            fill="none" stroke="#D96A9E" stroke-width="3.4" stroke-linecap="round"/>
+      <!-- the two rings -->
       <g class="kring">
-        <circle cx="164" cy="55" r="17" fill="none" stroke="#F0CE7E" stroke-width="4"/>
-        <path d="M164,32 L158,42 L170,42 Z" fill="#F0CE7E"/>
+        <circle cx="98" cy="65" r="30" fill="none" stroke="url(#ringGold)" stroke-width="6"/>
+        <circle cx="98" cy="65" r="30" fill="none" stroke="rgba(255,244,214,.5)" stroke-width="1.4"/>
+        <circle cx="142" cy="65" r="30" fill="none" stroke="url(#ringGold)" stroke-width="6"/>
+        <circle cx="142" cy="65" r="30" fill="none" stroke="rgba(255,244,214,.5)" stroke-width="1.4"/>
+        <path d="M142,35 l-5,-9 l10,0 z" fill="#F4DDA0"/>
+        <circle cx="142" cy="30" r="3.6" fill="#FFF4D6"/>
       </g>
     </svg>
     <p class="awaiting rv d1">Awaiting your gracious presence</p>
@@ -587,7 +600,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   <footer>23 · 08 · 2026</footer>
 </main>
 
-<audio id="bgm" src="music.mp3" loop preload="none"></audio>
+<audio id="bgm" src="music.mp3#t=35" preload="auto"></audio>
 <button id="music" aria-label="Play music" title="Play music">
   <svg class="note" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
@@ -843,8 +856,18 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         if (k === 1) { clearInterval(fade); if (done) done(); }
       }, 40);
     }
+    var START = 35, seeded = false;
+    function seed() {
+      if (seeded) return;
+      if (audio.readyState >= 1 && isFinite(audio.duration) && audio.currentTime < START - 0.5) {
+        try { audio.currentTime = START; seeded = true; } catch (e) {}
+      }
+    }
+    audio.addEventListener('loadedmetadata', seed);
+    audio.addEventListener('playing', seed);
     function play() {
       audio.volume = 0;
+      seed();
       var pr = audio.play();
       if (pr && pr.catch) pr.catch(function () { playing = false; btn.classList.remove('playing'); });
       ramp(0.62, 1400);
@@ -859,6 +882,17 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       try { sessionStorage.setItem('bgm', '0'); } catch (e) {}
     }
     btn.addEventListener('click', function () { playing ? pause() : play(); });
+    // loop back to the same starting point rather than the track's beginning
+    audio.addEventListener('ended', function () {
+      try { audio.currentTime = START; } catch (e) {}
+      audio.play().catch(function () {});
+    });
+    // try to start straight away; browsers that block it fall through to the first tap
+    audio.addEventListener('canplay', function once() {
+      audio.removeEventListener('canplay', once);
+      var pref = null; try { pref = sessionStorage.getItem('bgm'); } catch (e) {}
+      if (pref !== '0') play();
+    });
     var kicked = false, evs = ['pointerdown', 'touchstart', 'keydown'];
     function kick() {
       if (kicked) return; kicked = true;
