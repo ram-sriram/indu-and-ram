@@ -96,8 +96,10 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 }
 
 /* ============ opening veil ============ */
-#veil { position: fixed; inset: 0; background: #140304; z-index: 60; display: flex; align-items: center; justify-content: center; transition: opacity 1.6s ease 3.1s, visibility 0s linear 4.7s; }
-#veil.done { opacity: 0; visibility: hidden; }
+#veil { position: fixed; inset: 0; background: #140304; z-index: 60; display: flex; align-items: center; justify-content: center;
+  animation: veilOut 1.5s ease 3.2s forwards; }
+@keyframes veilOut { to { opacity: 0; visibility: hidden; } }
+#veil.gone { display: none; }
 .diya { width: 132px; }
 .diya .flame { transform-origin: 50% 100%; animation: ignite .9s ease .6s backwards, flicker 1.7s ease-in-out 1.5s infinite; }
 @keyframes ignite { from { transform: scale(0); } to { transform: scale(1); } }
@@ -636,8 +638,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     // restored scroll position dismiss the intro before it has played
     try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
     scrollTo(0, 0);
-    veil.classList.add('done');
-    setTimeout(function () { if (veil.parentNode) veil.remove(); }, 4700);
+    setTimeout(function () { if (veil.parentNode) veil.remove(); }, 4900);
     setTimeout(function () {
       addEventListener('scroll', function once() {
         if (veil.parentNode) veil.remove();
