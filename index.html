@@ -108,7 +108,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 /* ============ hero ============ */
 .hero { min-height: 100svh; }
 .mandala-wrap { position: absolute; top: 46%; left: 50%; width: min(150vw, 820px); aspect-ratio: 1; transform: translate(-50%,-50%); pointer-events: none; z-index: -1; }
-#mandala { width: 100%; height: 100%; display: block; animation: spin 90s linear infinite; transform-origin: 50% 50%; opacity: .5; }
+#mandala { width: 100%; height: 100%; display: block; animation: spin 90s linear infinite; transform-origin: 50% 50%; opacity: .34; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .mandala-veil { position: absolute; inset: 0; pointer-events: none; z-index: -1;
   background: radial-gradient(circle at 50% 46%, rgba(67,9,12,.86) 26%, rgba(67,9,12,.55) 46%, rgba(42,5,8,.1) 72%); }
@@ -118,7 +118,10 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 @keyframes toranDrop { to { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .toran { animation: none; transform: none; } }
 .invocation { font-family: var(--dev); font-size: clamp(16px, 4vw, 21px); color: var(--gold-bright); }
-.medallion { width: min(230px, 55vw); margin: 16px 0 4px; filter: drop-shadow(0 0 18px rgba(233,196,106,.28)); }
+.shrine { position: relative; width: min(268px, 66vw); margin: 12px auto 2px; }
+.shrine-arch { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 16px rgba(233,196,106,.22)); }
+.medallion { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); width: 62%;
+  filter: drop-shadow(0 0 15px rgba(233,196,106,.45)); }
 .medallion path, .medallion circle { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .hero.in .medallion path, .hero.in .medallion circle { animation: draw 2.6s ease .3s forwards; }
 .medallion [fill]:not([fill="none"]) { fill-opacity: 0; }
@@ -156,10 +159,28 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 }
 .plinth { height: 15px; background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
   border-radius: 0 0 5px 5px; box-shadow: 0 8px 22px -10px rgba(0,0,0,.7); }
-/* door-open reveal */
-.panel { clip-path: inset(0 50% 0 50%); transition: clip-path 1.15s cubic-bezier(.35,.85,.35,1); }
-.in .panel { clip-path: inset(0 0 0 0); }
-@media (prefers-reduced-motion: reduce) { .panel { clip-path: none !important; transition: none; } }
+/* every chapter enters its own way */
+#blessing .panel { clip-path: inset(0 50% 0 50%); transition: clip-path 1.2s cubic-bezier(.35,.85,.35,1); }
+#blessing.in .panel { clip-path: inset(0 0 0 0); }
+
+#couple .panel { opacity: 0; transform: translateY(52px) scale(.94); transition: opacity .85s ease, transform 1s var(--spring); }
+#couple.in .panel { opacity: 1; transform: none; }
+
+#date .panel { opacity: 0; transform: perspective(1100px) rotateX(-16deg) translateY(26px); transform-origin: top center;
+  transition: opacity .8s ease, transform 1s cubic-bezier(.2,.9,.3,1); }
+#date.in .panel { opacity: 1; transform: none; }
+
+#venue .panel { opacity: 0; transform: translateX(-38px) rotate(-1.2deg); transition: opacity .85s ease, transform 1s var(--spring); }
+#venue.in .panel { opacity: 1; transform: none; }
+
+#rsvp .panel { opacity: 0; transform: scale(.88); transition: opacity .8s ease, transform 1.05s var(--spring); }
+#rsvp.in .panel { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  #blessing .panel, #couple .panel, #date .panel, #venue .panel, #rsvp .panel {
+    clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+}
 
 .chapter-label { font-size: 13px; letter-spacing: .42em; text-indent: .42em; text-transform: uppercase; font-weight: 600; color: var(--gold-deep); margin-bottom: 14px; }
 .shloka { font-family: var(--dev); font-size: clamp(17px, 4.6vw, 21px); line-height: 2; color: var(--maroon-soft); }
@@ -309,7 +330,19 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     </svg></div>
 
     <p class="invocation rv">॥ श्री गणेशाय नमः ॥</p>
-    <svg class="medallion rv" viewBox="0 0 220 236" fill="none" aria-label="Lord Ganesha">
+    <div class="shrine rv d1">
+      <svg class="shrine-arch" viewBox="0 -26 660 700" fill="none" aria-hidden="true">
+        <g stroke="#C9962E" stroke-width="4" stroke-linejoin="round">
+          <use href="#cusparch"/>
+          <use href="#cusparch" transform="translate(23.1,7) scale(.93)" stroke-width="2.5" opacity=".55"/>
+        </g>
+        <path d="M1,150 L1,660 M659,150 L659,660" stroke="#C9962E" stroke-width="4"/>
+        <path d="M24,157 L24,660 M636,157 L636,660" stroke="#E9C46A" stroke-width="2" opacity=".45"/>
+        <circle cx="330" cy="-34" r="7" fill="#E9C46A"/>
+        <path d="M330,-27 L330,-6" stroke="#E9C46A" stroke-width="2.6"/>
+        <path d="M300,662 L360,662" stroke="#E9C46A" stroke-width="3" opacity=".7"/>
+      </svg>
+      <svg class="medallion" viewBox="0 0 220 236" fill="none" aria-label="Lord Ganesha">
       <g stroke="#E9C46A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="110" cy="116" r="96" stroke-width="1.4" opacity=".8" pathLength="1"/>
         <circle cx="110" cy="116" r="88" stroke-width="1" stroke-dasharray="1 7" opacity=".9" pathLength="1"/>
@@ -340,6 +373,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         <path pathLength="1" d="M76,196 Q 110,212 144,196" stroke-width="1.6"/>
       </g>
     </svg>
+    </div>
     <h1 class="hero-names rv d1">Indu &amp; Ram</h1>
     <p class="hero-sub rv d2">Are getting engaged</p>
     <div class="hero-native rv d2"><span class="te" lang="te">నిశ్చితార్థం</span> ✦ <span class="mr" lang="mr">साखरपुडा</span></div>
@@ -549,6 +583,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   <footer>23 · 08 · 2026</footer>
 </main>
 
+<audio id="bgm" src="music.mp3" loop preload="none"></audio>
 <button id="music" aria-label="Play music" title="Play music">
   <svg class="note" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
@@ -571,10 +606,22 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   }
 
   /* ---------- reveals ---------- */
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section'));
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.2 });
-  document.querySelectorAll('section').forEach(function (s) { io.observe(s); });
+  secs.forEach(function (s) { io.observe(s); });
+  // safety net: a jump (deep link, reload, restored position) can skip a section
+  // past the observer entirely — anything at or above the fold must be revealed.
+  function sweepReveals() {
+    for (var i = 0; i < secs.length; i++) {
+      var r = secs[i].getBoundingClientRect();
+      if (r.top < innerHeight * 0.85) secs[i].classList.add('in');
+    }
+  }
+  addEventListener('scroll', sweepReveals, { passive: true });
+  addEventListener('load', sweepReveals);
+  setTimeout(sweepReveals, 1200);
 
   /* ---------- starfield ---------- */
   if (!reduced) {
@@ -778,74 +825,46 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     });
   }
 
-  /* ---------- original music: tanpura drone + gentle plucks (Web Audio) ---------- */
+  /* ---------- music ---------- */
   (function () {
-    var btn = document.getElementById('music'), hint = document.getElementById('music-hint');
-    var ctx = null, master = null, timer = null, playing = false, step = 0;
-    // Raga-flavoured scale (Sa Re Ga Pa Dha) in C#, gentle and auspicious
-    var SA = 138.59; // C#3
-    var scale = [1, 9 / 8, 5 / 4, 3 / 2, 5 / 3, 2, 9 / 4, 5 / 2];
-    var pattern = [0, 2, 1, 3, 4, 3, 5, 4, 2, 1, 0, 2, 4, 5, 6, 5, 4, 3, 2, 1];
-
-    function pluck(freq, when, gainVal) {
-      var o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), lp = ctx.createBiquadFilter();
-      o.type = 'triangle'; o.frequency.value = freq;
-      o2.type = 'sine'; o2.frequency.value = freq * 2.01;
-      lp.type = 'lowpass'; lp.frequency.value = 2200; lp.Q.value = 0.6;
-      g.gain.setValueAtTime(0.0001, when);
-      g.gain.exponentialRampToValueAtTime(gainVal, when + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, when + 2.6);
-      var g2 = ctx.createGain(); g2.gain.value = 0.25;
-      o.connect(g); o2.connect(g2); g2.connect(g); g.connect(lp); lp.connect(master);
-      o.start(when); o2.start(when); o.stop(when + 2.8); o2.stop(when + 2.8);
+    var btn = document.getElementById('music'), hint = document.getElementById('music-hint'), audio = document.getElementById('bgm');
+    var fade = null, playing = false;
+    function ramp(to, ms, done) {
+      clearInterval(fade);
+      var from = audio.volume, t0 = Date.now();
+      fade = setInterval(function () {
+        var k = Math.min(1, (Date.now() - t0) / ms);
+        audio.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+        if (k === 1) { clearInterval(fade); if (done) done(); }
+      }, 40);
     }
-    function drone() {
-      [SA, SA * 1.5, SA * 2].forEach(function (f, i) {
-        var o = ctx.createOscillator(), g = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
-        o.type = i === 2 ? 'sine' : 'triangle'; o.frequency.value = f;
-        g.gain.value = i === 0 ? 0.05 : (i === 1 ? 0.032 : 0.018);
-        lfo.frequency.value = 0.07 + i * 0.03; lg.gain.value = g.gain.value * 0.45;
-        lfo.connect(lg); lg.connect(g.gain);
-        o.connect(g); g.connect(master);
-        o.start(); lfo.start();
-      });
-    }
-    function schedule() {
-      var t = ctx.currentTime + 0.05;
-      var deg = pattern[step % pattern.length];
-      pluck(SA * 2 * scale[deg], t, 0.075);
-      if (step % 4 === 2) pluck(SA * scale[(deg + 2) % scale.length], t + 0.34, 0.045);
-      step++;
-      timer = setTimeout(schedule, 1500 + (step % 3) * 220);
-    }
-    function start() {
-      if (!ctx) {
-        ctx = new (window.AudioContext || window.webkitAudioContext)();
-        master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
-        drone();
-      }
-      if (ctx.state === 'suspended') ctx.resume();
-      master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 1.4);
-      if (!timer) schedule();
+    function play() {
+      audio.volume = 0;
+      var pr = audio.play();
+      if (pr && pr.catch) pr.catch(function () { playing = false; btn.classList.remove('playing'); });
+      ramp(0.62, 1400);
       playing = true; btn.classList.add('playing');
       btn.setAttribute('aria-label', 'Pause music'); btn.title = 'Pause music';
+      try { sessionStorage.setItem('bgm', '1'); } catch (e) {}
     }
-    function stop() {
-      if (!ctx) return;
-      master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-      master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.7);
-      clearTimeout(timer); timer = null;
+    function pause() {
+      ramp(0, 600, function () { audio.pause(); });
       playing = false; btn.classList.remove('playing');
       btn.setAttribute('aria-label', 'Play music'); btn.title = 'Play music';
+      try { sessionStorage.setItem('bgm', '0'); } catch (e) {}
     }
-    btn.addEventListener('click', function () { playing ? stop() : start(); });
-    // gentle nudge that music exists
+    btn.addEventListener('click', function () { playing ? pause() : play(); });
+    var kicked = false, evs = ['pointerdown', 'touchstart', 'keydown'];
+    function kick() {
+      if (kicked) return; kicked = true;
+      evs.forEach(function (e) { removeEventListener(e, kick); });
+      var pref = null; try { pref = sessionStorage.getItem('bgm'); } catch (e) {}
+      if (pref !== '0') play();
+    }
+    evs.forEach(function (e) { addEventListener(e, kick, { passive: true }); });
     setTimeout(function () {
-      if (!playing) { hint.classList.add('show'); setTimeout(function () { hint.classList.remove('show'); }, 5200); }
-    }, 5200);
+      if (!playing) { hint.classList.add('show'); setTimeout(function () { hint.classList.remove('show'); }, 5600); }
+    }, 4200);
   })();
 })();
 </script>
