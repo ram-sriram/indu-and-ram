@@ -196,9 +196,24 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 .shloka { font-family: var(--dev); font-size: clamp(17px, 4.6vw, 21px); line-height: 2; color: var(--maroon-soft); }
 .shloka-meaning { font-style: italic; font-size: clamp(15px, 4vw, 18px); color: #8A6B45; margin-top: 12px; }
 
-.couple-wrap { position: relative; margin: 4px auto 16px; width: min(300px, 72vw); }
-.couple-art { width: 100%; display: block; border-radius: 8px; }
-.couple-photo { width: 100%; display: block; border-radius: 10px; }
+.couple-wrap { position: relative; margin: 2px auto 14px; width: min(310px, 76vw); padding-top: 6px; }
+.couple-niche { position: absolute; inset: 0 0 6% 0; width: 100%; height: 94%; display: block; z-index: 0; }
+.couple-wrap::before {          /* warm light gathering behind them */
+  content: ''; position: absolute; left: 50%; top: 6%; transform: translateX(-50%);
+  width: 96%; height: 88%; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 42%, rgba(233,196,106,.30), rgba(233,196,106,.10) 46%, rgba(233,196,106,0) 72%);
+}
+.couple-wrap::after {           /* they stand on something */
+  content: ''; position: absolute; left: 50%; bottom: 5.5%; transform: translateX(-50%);
+  width: 62%; height: 16px; z-index: 0; pointer-events: none; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(122,79,32,.28), rgba(122,79,32,0) 70%);
+}
+.couple-art { width: 100%; display: block; border-radius: 8px; position: relative; z-index: 1; }
+.couple-photo, .couple-wrap picture { transform: translateX(-3%); }
+.couple-photo { width: 100%; display: block; position: relative; z-index: 1;
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, rgba(0,0,0,.35) 95%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, rgba(0,0,0,.35) 95%, transparent 100%); }
+.couple-wrap picture { position: relative; z-index: 1; display: block; }
 /* the illustration is the default; the drawn placeholder only returns if it fails to load */
 .couple-art { display: none; }
 .couple-wrap.no-photo .couple-art { display: block; }
@@ -429,6 +444,12 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       <div class="panel-body">
         <p class="chapter-label rv">The Betrothal</p>
         <div class="couple-wrap rv d1">
+        <svg class="couple-niche" viewBox="0 -26 660 700" preserveAspectRatio="none" aria-hidden="true">
+          <use href="#cusparch" fill="none" stroke="#C9962E" stroke-width="3" opacity=".55"/>
+          <use href="#cusparch" transform="translate(23.1,7) scale(.93)" fill="none" stroke="#E9C46A" stroke-width="1.4" opacity=".35"/>
+          <path d="M1,150 L1,678 M659,150 L659,678" stroke="#C9962E" stroke-width="3" opacity=".5"/>
+          <path d="M1,678 L659,678" stroke="#C9962E" stroke-width="2.4" opacity=".45"/>
+        </svg>
         <svg class="couple-art" id="couple-fallback" viewBox="66 316 368 314" aria-label="Ring exchange">
         <defs><radialGradient id="cg" cx="50%" cy="42%" r="75%">
           <stop offset="0%" stop-color="#7A5426" stop-opacity=".85"/><stop offset="55%" stop-color="#54371C" stop-opacity=".9"/><stop offset="100%" stop-color="#33200F"/>
