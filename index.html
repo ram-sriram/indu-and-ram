@@ -190,7 +190,11 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 .shloka { font-family: var(--dev); font-size: clamp(17px, 4.6vw, 21px); line-height: 2; color: var(--maroon-soft); }
 .shloka-meaning { font-style: italic; font-size: clamp(15px, 4vw, 18px); color: #8A6B45; margin-top: 12px; }
 
-.couple-art { width: min(290px, 68vw); margin: 4px auto 16px; display: block; border-radius: 8px; }
+.couple-wrap { position: relative; margin: 4px auto 16px; width: min(300px, 72vw); }
+.couple-art { width: 100%; display: block; border-radius: 8px; }
+.couple-photo { display: none; width: 100%; border-radius: 10px; }
+.couple-wrap.has-photo .couple-art { display: none; }
+.couple-wrap.has-photo .couple-photo { display: block; }
 .p-native { font-size: clamp(19px, 5vw, 24px); color: var(--maroon-soft); }
 .bride .p-native { font-family: var(--dev); } .groom .p-native { font-family: var(--tel); }
 .p-name { font-size: clamp(30px, 8vw, 44px); font-weight: 600; letter-spacing: .05em; line-height: 1.1; color: var(--maroon); }
@@ -416,7 +420,8 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       </svg>
       <div class="panel-body">
         <p class="chapter-label rv">The Betrothal</p>
-        <svg class="couple-art rv d1" viewBox="66 316 368 314" aria-label="Ring exchange">
+        <div class="couple-wrap rv d1">
+        <svg class="couple-art" id="couple-fallback" viewBox="66 316 368 314" aria-label="Ring exchange">
         <defs><radialGradient id="cg" cx="50%" cy="42%" r="75%">
           <stop offset="0%" stop-color="#7A5426" stop-opacity=".85"/><stop offset="55%" stop-color="#54371C" stop-opacity=".9"/><stop offset="100%" stop-color="#33200F"/>
         </radialGradient>
@@ -462,6 +467,8 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
         <circle cx="250" cy="446.5" r="1.7" fill="#F5C36A" filter="url(#glow)"/>
         <circle cx="290" cy="360" r="1.8" fill="#D9B45A"/><circle cx="316" cy="349" r="3.6" fill="#C4526B"/><circle cx="316" cy="349" r="1.4" fill="#D9B45A"/>
       </svg>
+        <img class="couple-photo" id="couple-photo" alt="Indu and Ram" src="assets/couple.png" loading="lazy" decoding="async">
+      </div>
         <div class="bride rv d2">
           <p class="p-native" lang="mr">इंदु गुज्जर</p>
           <p class="p-name">Indu Gujjar</p>
@@ -732,6 +739,14 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   addEventListener('resize', function () { setTimeout(buildThreads, 200); });
   addEventListener('load', function () { setTimeout(buildThreads, 300); });
   setTimeout(buildThreads, 900);
+
+  /* ---------- couple artwork: a supplied image replaces the placeholder ---------- */
+  (function () {
+    var img = document.getElementById('couple-photo');
+    if (!img) return;
+    img.addEventListener('load', function () { img.parentNode.classList.add('has-photo'); });
+    img.addEventListener('error', function () { img.remove(); });  // keep the drawn placeholder
+  })();
 
   /* ---------- lazy map ---------- */
   (function () {
