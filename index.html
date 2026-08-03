@@ -84,7 +84,10 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 
 /* reveals — spring easing from the marigold morning */
 .rv { opacity: 0; transform: translateY(30px) scale(.985); transition: opacity .9s ease, transform .9s var(--spring); }
+.panel .rv { transition-delay: .55s; }
 .rv.d1 { transition-delay: .12s; } .rv.d2 { transition-delay: .26s; } .rv.d3 { transition-delay: .4s; } .rv.d4 { transition-delay: .54s; }
+.panel .rv.d1 { transition-delay: .7s; } .panel .rv.d2 { transition-delay: .84s; }
+.panel .rv.d3 { transition-delay: .98s; } .panel .rv.d4 { transition-delay: 1.12s; }
 .in .rv { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -93,9 +96,9 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 }
 
 /* ============ opening veil ============ */
-#veil { position: fixed; inset: 0; background: #140304; z-index: 60; display: flex; align-items: center; justify-content: center; transition: opacity 1.5s ease 2.9s, visibility 0s linear 4.5s; }
+#veil { position: fixed; inset: 0; background: #140304; z-index: 60; display: flex; align-items: center; justify-content: center; transition: opacity 1.6s ease 3.1s, visibility 0s linear 4.7s; }
 #veil.done { opacity: 0; visibility: hidden; }
-.diya { width: 118px; }
+.diya { width: 132px; }
 .diya .flame { transform-origin: 50% 100%; animation: ignite .9s ease .6s backwards, flicker 1.7s ease-in-out 1.5s infinite; }
 @keyframes ignite { from { transform: scale(0); } to { transform: scale(1); } }
 @keyframes flicker { 0%,100% { transform: scale(1) rotate(0); } 30% { transform: scale(1.07) rotate(-2deg); } 60% { transform: scale(.95) rotate(1.5deg); } }
@@ -387,7 +390,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     <h1 class="hero-names rv d1">Indu &amp; Ram</h1>
     <p class="hero-sub rv d2">Are getting engaged</p>
     <div class="hero-native rv d2"><span class="te" lang="te">నిశ్చితార్థం</span> ✦ <span class="mr" lang="mr">साखरपुडा</span></div>
-    <p class="hero-date rv d3">Sunday, the 23rd of August 2026 · Eluru</p>
+    <p class="hero-date rv d3">Sunday, 23<sup style="font-size:.5em;vertical-align:.7em">rd</sup> August 2026 · 10:00 AM · Eluru</p>
     <div class="scroll-hint">Scroll</div>
   </section>
 
@@ -565,13 +568,13 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       <div class="panel-body">
         <p class="chapter-label rv">RSVP</p>
         <p class="rsvp-line rv d1">Your presence is our joy — a quick word helps us welcome you well.</p>
-        <div class="rv d2" data-side="bride">
+        <div class="rv d2 side-block" data-side="bride" hidden>
           <p class="rsvp-family">Bride's family</p>
           <p class="rsvp-name">Shri Radhanath Gujjar</p>
           <a class="btn" href="tel:+919848344581">☏ +91 98483 44581</a>
           <a class="btn wa" href="https://wa.me/919848344581?text=Namaste!%20We%20will%20happily%20attend%20Indu%20%26%20Ram%27s%20Nischitartham%20on%2023%20August%202026%20%F0%9F%8C%B8" target="_blank" rel="noopener">WhatsApp</a>
         </div>
-        <div class="rv d3" data-side="groom" style="margin-top:18px">
+        <div class="rv d2 side-block" data-side="groom">
           <p class="rsvp-family">Groom's family</p>
           <p class="rsvp-name">Ram Kumar</p>
           <a class="btn" href="tel:+919463031377">☏ +91 94630 31377</a>
@@ -629,23 +632,32 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   var veil = document.getElementById('veil');
   if (reduced) { veil.remove(); }
   else {
+    // start at the top so the lamp is the first thing seen, and don't let a
+    // restored scroll position dismiss the intro before it has played
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+    scrollTo(0, 0);
     veil.classList.add('done');
     setTimeout(function () { if (veil.parentNode) veil.remove(); }, 4700);
-    addEventListener('scroll', function once() { if (veil.parentNode) veil.remove(); removeEventListener('scroll', once); }, { passive: true });
+    setTimeout(function () {
+      addEventListener('scroll', function once() {
+        if (veil.parentNode) veil.remove();
+        removeEventListener('scroll', once);
+      }, { passive: true });
+    }, 1800);
   }
 
   /* ---------- reveals ---------- */
   var secs = Array.prototype.slice.call(document.querySelectorAll('section'));
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.01, rootMargin: '0px 0px -18% 0px' });
   secs.forEach(function (s) { io.observe(s); });
   // safety net: a jump (deep link, reload, restored position) can skip a section
   // past the observer entirely — anything at or above the fold must be revealed.
   function sweepReveals() {
     for (var i = 0; i < secs.length; i++) {
       var r = secs[i].getBoundingClientRect();
-      if (r.top < innerHeight * 0.85) secs[i].classList.add('in');
+      if (r.top < innerHeight * 0.92) secs[i].classList.add('in');
     }
   }
   addEventListener('scroll', sweepReveals, { passive: true });
@@ -736,7 +748,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   var raf = null;
   function draw() {
     if (!pA) return;
-    var prog = Math.min(1, (scrollY + innerHeight * 0.85) / document.documentElement.scrollHeight);
+    var prog = Math.min(1, Math.max(0, (scrollY + innerHeight * 0.42) / document.documentElement.scrollHeight));
     pA.style.strokeDashoffset = lenA * (1 - prog);
     pB.style.strokeDashoffset = lenB * (1 - prog);
   }
@@ -850,12 +862,11 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   document.querySelectorAll('#rsvp .btn').forEach(function (b) { b.addEventListener('click', function () { burst(b); }); });
 
   /* ---------- side-specific links ---------- */
-  var side = new URLSearchParams(location.search).get('side');
-  if (side === 'bride' || side === 'groom') {
-    document.querySelectorAll('#rsvp [data-side]').forEach(function (d) {
-      if (d.getAttribute('data-side') !== side) d.style.display = 'none';
-    });
-  }
+  // groom's contact is the default; ?side=bride swaps to the bride's family
+  var side = new URLSearchParams(location.search).get('side') === 'bride' ? 'bride' : 'groom';
+  document.querySelectorAll('#rsvp [data-side]').forEach(function (d) {
+    d.hidden = d.getAttribute('data-side') !== side;
+  });
 
   /* ---------- music ---------- */
   (function () {
