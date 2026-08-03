@@ -733,14 +733,6 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   addEventListener('load', function () { setTimeout(buildThreads, 300); });
   setTimeout(buildThreads, 900);
 
-  /* ---------- medallion parallax ---------- */
-  var med = document.querySelector('.medallion');
-  if (med && !reduced && matchMedia('(pointer:fine)').matches) {
-    addEventListener('mousemove', function (e) {
-      med.style.transform = 'translate(' + ((e.clientX / innerWidth - .5) * 10) + 'px,' + ((e.clientY / innerHeight - .5) * 8) + 'px)';
-    }, { passive: true });
-  }
-
   /* ---------- lazy map ---------- */
   (function () {
     var frame = document.getElementById('map'), ifr = document.getElementById('map-iframe');
