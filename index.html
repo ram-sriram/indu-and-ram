@@ -297,6 +297,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
 }
 #music:hover { transform: scale(1.07); }
 #music:active { transform: scale(.93); }
+#music:not(.playing) { animation: pulse 2.6s ease-out infinite; }
 #music.playing { background: rgba(201,150,46,.22); box-shadow: 0 0 0 0 rgba(233,196,106,.5); animation: pulse 2.6s ease-out infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 14px rgba(233,196,106,0); } 100% { box-shadow: 0 0 0 0 rgba(233,196,106,0); } }
 #music .bars { display: none; gap: 2.5px; align-items: flex-end; height: 17px; }
@@ -949,17 +950,26 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
       if (pref !== '0') play();
     });
-    var kicked = false, evs = ['pointerdown', 'touchstart', 'keydown'];
+    // phones block audio until the visitor touches the page, so start on the
+    // very first interaction of any kind — including a tap on the opening lamp
+    var kicked = false;
+    var evs = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown', 'scroll'];
     function kick() {
       if (kicked) return; kicked = true;
-      evs.forEach(function (e) { removeEventListener(e, kick); });
+      evs.forEach(function (e) { removeEventListener(e, kick, true); });
       var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
       if (pref !== '0') play();
     }
-    evs.forEach(function (e) { addEventListener(e, kick, { passive: true }); });
+    evs.forEach(function (e) { addEventListener(e, kick, { passive: true, capture: true }); });
+    var v = document.getElementById('veil');
+    if (v) v.addEventListener('click', kick, { passive: true });
+
+    // if the browser refused to start it, say so plainly instead of pretending
+    audio.addEventListener('play', function () { hint.textContent = '\u266a Music on \u2014 tap to mute'; });
     setTimeout(function () {
-      hint.textContent = playing ? '\u266a Music on \u2014 tap to mute' : '\u266a Tap for music';
-      hint.classList.add('show'); setTimeout(function () { hint.classList.remove('show'); }, 5200);
+      hint.textContent = (playing && !audio.paused) ? '\u266a Music on \u2014 tap to mute' : '\u266a Tap anywhere for music';
+      hint.classList.add('show');
+      setTimeout(function () { hint.classList.remove('show'); }, audio.paused ? 8000 : 5200);
     }, 4200);
   })();
 })();
