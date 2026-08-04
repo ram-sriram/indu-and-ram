@@ -952,13 +952,16 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     });
     // phones block audio until the visitor touches the page, so start on the
     // very first interaction of any kind — including a tap on the opening lamp
-    var kicked = false;
-    var evs = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown', 'scroll'];
+    // 'scroll' was in this list, and the page scrolls itself to the top on load —
+    // that fired the handler before any real touch, burning the single attempt.
+    // Now the listeners stay armed until playback has genuinely started.
+    var evs = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'];
+    function unhook() { evs.forEach(function (e) { removeEventListener(e, kick, true); }); }
     function kick() {
-      if (kicked) return; kicked = true;
-      evs.forEach(function (e) { removeEventListener(e, kick, true); });
       var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
-      if (pref !== '0') play();
+      if (pref === '0') { unhook(); return; }        // they asked for silence
+      play();
+      setTimeout(function () { if (!audio.paused) unhook(); }, 400);
     }
     evs.forEach(function (e) { addEventListener(e, kick, { passive: true, capture: true }); });
     var v = document.getElementById('veil');
