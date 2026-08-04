@@ -55,7 +55,7 @@
   --spring: cubic-bezier(.34, 1.4, .5, 1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
 body {
   background: radial-gradient(circle at 50% -10%, #6B1416 0%, var(--maroon-deep) 55%, #2A0508 100%);
   background-attachment: fixed;
@@ -80,7 +80,7 @@ body::before {
 }
 #threads { position: absolute; top: 0; left: 0; width: 100%; z-index: 1; pointer-events: none; }
 main { position: relative; z-index: 2; }
-section { min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10vh 18px; position: relative; }
+section { min-height: 92svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10vh 18px; position: relative; }
 
 /* reveals — spring easing from the marigold morning */
 .rv { opacity: 0; transform: translateY(30px) scale(.985); transition: opacity .9s ease, transform .9s var(--spring); }
@@ -112,7 +112,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 
 /* ============ hero ============ */
 .hero { min-height: 100svh; }
-.mandala-wrap { position: absolute; top: 46%; left: 50%; width: min(150vw, 820px); aspect-ratio: 1; transform: translate(-50%,-50%); pointer-events: none; z-index: -1; }
+.mandala-wrap { position: absolute; top: 46%; left: 50%; width: min(112vw, 820px); aspect-ratio: 1; transform: translate(-50%,-50%); pointer-events: none; z-index: -1; }
 #mandala { width: 100%; height: 100%; display: block; animation: spin 90s linear infinite; transform-origin: 50% 50%; opacity: .34; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .mandala-veil { position: absolute; inset: 0; pointer-events: none; z-index: -1;
@@ -148,6 +148,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 }
 @keyframes shimmer { 0%,100% { background-position: 82% 0; } 50% { background-position: 18% 0; } }
 .hero.in .hero-names { animation: shimmer 5.5s ease-in-out 1.6s infinite; }
+@media (prefers-reduced-motion: reduce) { .hero.in .hero-names { animation: none; background: none; color: var(--cream); } }
 @media (prefers-reduced-motion: reduce) { .hero-names { animation: none; background: none; color: var(--cream); } }
 .hero-sub { font-size: clamp(16px, 4.2vw, 22px); letter-spacing: .34em; text-indent: .34em; text-transform: uppercase; color: var(--gold); margin-top: 12px; }
 .hero-native { display: flex; gap: 14px; align-items: baseline; justify-content: center; font-size: clamp(19px, 5vw, 25px); margin-top: 10px; color: var(--gold-bright); }
@@ -162,6 +163,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 @media (min-width: 900px) { .panel { max-width: 640px; } section { padding: 11vh 18px; } }
 .arch-top { display: block; width: 100%; height: auto; margin-bottom: -1px; }
 .panel-body {
+  overflow: hidden;
   background: linear-gradient(170deg, #FDF7E9 0%, var(--cream) 45%, var(--cream-deep) 100%);
   color: var(--ink); padding: 8px clamp(20px,5vw,46px) clamp(28px,5vw,42px);
   border-left: 2.4px solid var(--gold); border-right: 2.4px solid var(--gold);
@@ -266,7 +268,7 @@ section { min-height: 92vh; display: flex; flex-direction: column; align-items: 
 @media (prefers-reduced-motion: reduce) { .kolam path, .kolam circle { stroke-dashoffset: 0; animation: none !important; } }
 
 /* ============ finale ============ */
-.finale { min-height: 100vh; overflow: hidden; }
+.finale { min-height: 100svh; overflow: hidden; }
 .knot { width: min(250px, 68vw); margin-bottom: 18px; filter: drop-shadow(0 0 16px rgba(233,196,106,.3)); }
 .knot .ka, .knot .kb { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .finale.in .ka { animation: draw 1.7s ease .3s forwards; }
@@ -306,7 +308,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
 .bars i:nth-child(3) { height: 10px; animation-delay: .36s; }
 @keyframes eq { 0%,100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) { #music.playing { animation: none; } .bars i { animation: none; } }
-.music-hint { position: fixed; right: 74px; bottom: 30px; z-index: 55; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase;
+.music-hint { position: fixed; right: 16px; bottom: 76px; z-index: 55; font-size: 12.5px; letter-spacing: .16em; text-transform: uppercase;
   color: var(--gold-pale); background: rgba(42,5,8,.8); border: 1px solid rgba(201,150,46,.5); border-radius: 20px; padding: 6px 12px;
   opacity: 0; transition: opacity .6s ease; pointer-events: none; }
 .music-hint.show { opacity: .95; }
@@ -640,7 +642,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   </svg>
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
 </button>
-<div class="music-hint" id="music-hint">♪ Music on — tap to mute</div>
+<div class="music-hint" id="music-hint">♪ Tap for music</div>
 
 <script>
 (function () {
@@ -666,6 +668,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     setTimeout(function () {
       addEventListener('scroll', function once() {
         if (veil.parentNode) veil.remove();
+        raiseCurtain();                       // never drop the curtain on a blank hero
         removeEventListener('scroll', once);
       }, { passive: true });
     }, 1800);
@@ -787,7 +790,11 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     pB.style.strokeDashoffset = lenB * (1 - prog);
   }
   addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(function () { draw(); raf = null; }); }, { passive: true });
-  addEventListener('resize', function () { setTimeout(buildThreads, 200); });
+  var lastW = innerWidth;
+  addEventListener('resize', function () {
+    if (Math.abs(innerWidth - lastW) < 2) return;   // address bar hiding is not a resize
+    lastW = innerWidth; setTimeout(buildThreads, 200);
+  });
   addEventListener('load', function () { setTimeout(buildThreads, 300); });
   setTimeout(buildThreads, 900);
 
@@ -829,7 +836,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   }
 
   /* ---------- countdown ---------- */
-  var target = new Date('2026-08-23T00:00:00+05:30').getTime();
+  var target = new Date('2026-08-23T10:00:00+05:30').getTime();
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
   function setVal(id, v) {
     var el = document.getElementById(id);
@@ -889,7 +896,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     burst(this);
   });
   document.getElementById('share').addEventListener('click', function () {
-    var data = { title: 'Indu & Ram — Engagement', text: 'Join us for our Nischitartham · Sakharpuda on Sunday, 23 August 2026 in Eluru!', url: location.href.split('?')[0] };
+    var data = { title: 'Indu & Ram — Engagement', text: 'Join us for our Nischitartham · Sakharpuda on Sunday, 23 August 2026 in Eluru!', url: location.href };
     if (navigator.share) { navigator.share(data).catch(function () {}); }
     else if (navigator.clipboard) { navigator.clipboard.writeText(data.url); this.textContent = 'Link copied!'; }
   });
@@ -951,7 +958,8 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     }
     evs.forEach(function (e) { addEventListener(e, kick, { passive: true }); });
     setTimeout(function () {
-      if (!playing) { hint.classList.add('show'); setTimeout(function () { hint.classList.remove('show'); }, 5600); }
+      hint.textContent = playing ? '\u266a Music on \u2014 tap to mute' : '\u266a Tap for music';
+      hint.classList.add('show'); setTimeout(function () { hint.classList.remove('show'); }, 5200);
     }, 4200);
   })();
 })();
