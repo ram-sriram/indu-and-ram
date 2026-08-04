@@ -97,7 +97,7 @@ section { min-height: 92svh; display: flex; flex-direction: column; align-items:
 
 /* ============ opening veil ============ */
 #veil { position: fixed; inset: 0; background: #140304; z-index: 60; display: flex; align-items: center; justify-content: center;
-  animation: veilOut 1.5s ease 3.2s forwards; }
+  animation: veilOut 1.4s ease 5.8s forwards; }
 @keyframes veilOut { to { opacity: 0; visibility: hidden; } }
 #veil.gone { display: none; }
 .diya { width: 132px; }
@@ -106,6 +106,9 @@ section { min-height: 92svh; display: flex; flex-direction: column; align-items:
 @keyframes flicker { 0%,100% { transform: scale(1) rotate(0); } 30% { transform: scale(1.07) rotate(-2deg); } 60% { transform: scale(.95) rotate(1.5deg); } }
 .halo { position: absolute; width: 38px; height: 38px; border-radius: 50%; background: radial-gradient(circle, rgba(245,195,106,.5), rgba(245,195,106,0) 70%); animation: halo 2.5s ease .8s forwards; }
 @keyframes halo { to { width: 330vmax; height: 330vmax; opacity: 0; } }
+.veil-tap { position: absolute; margin-top: 210px; font-size: 12.5px; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(240,221,174,.75); opacity: 0; animation: vt 1s ease 2s forwards, bob 2.4s ease-in-out 3s infinite; }
+@media (prefers-reduced-motion: reduce) { .veil-tap { animation: vt 1s ease 2s forwards; } }
 .veil-text { position: absolute; margin-top: 146px; font-family: var(--dev); font-size: 18px; color: var(--gold-bright); opacity: 0; animation: vt 1.3s ease 1.3s forwards; }
 @keyframes vt { to { opacity: .95; } }
 @media (prefers-reduced-motion: reduce) { #veil { display: none; } }
@@ -316,7 +319,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
 </style>
 </head>
 <body>
-<div id="veil" aria-hidden="true">
+<div id="veil" role="button" tabindex="0" aria-label="Open the invitation">
   <div class="halo"></div>
   <svg class="diya" viewBox="0 0 120 110">
     <g class="flame">
@@ -327,6 +330,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     <path d="M24,66 C 40,72 80,72 96,66" stroke="#8A6420" stroke-width="2" fill="none"/>
   </svg>
   <p class="veil-text">॥ शुभारम्भ ॥</p>
+  <p class="veil-tap" id="veil-tap">tap to open</p>
 </div>
 
 <div id="stars" aria-hidden="true"></div>
@@ -664,8 +668,16 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       if (hero) hero.classList.add('in');
     }
     // the lamp fades out over 1.5s starting at 3.2s — start the hero as it clears
-    setTimeout(raiseCurtain, 3900);
-    setTimeout(function () { if (veil.parentNode) veil.remove(); }, 4900);
+    veil.addEventListener('click', function () {
+      if (window.__startMusic) window.__startMusic();   // a real tap — audio is allowed now
+      raiseCurtain();
+      veil.style.transition = 'opacity .8s ease';
+      veil.style.opacity = '0';
+      setTimeout(function () { if (veil.parentNode) veil.remove(); }, 850);
+    });
+    // if nobody taps, open it anyway — the invitation must never be stuck behind a gate
+    setTimeout(raiseCurtain, 6200);
+    setTimeout(function () { if (veil.parentNode) veil.remove(); }, 7200);
     setTimeout(function () {
       addEventListener('scroll', function once() {
         if (veil.parentNode) veil.remove();
@@ -914,6 +926,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
   (function () {
     var btn = document.getElementById('music'), hint = document.getElementById('music-hint'), audio = document.getElementById('bgm');
     var fade = null, playing = false;
+    try { localStorage.removeItem('bgm'); } catch (e) {}   // mute is per-visit now
     function ramp(to, ms, done) {
       clearInterval(fade);
       var from = audio.volume, t0 = Date.now();
@@ -930,13 +943,11 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
       ramp(0.62, 1400);
       playing = true; btn.classList.add('playing');
       btn.setAttribute('aria-label', 'Pause music'); btn.title = 'Pause music';
-      try { localStorage.setItem('bgm', '1'); } catch (e) {}
     }
     function pause() {
       ramp(0, 600, function () { audio.pause(); });
       playing = false; btn.classList.remove('playing');
       btn.setAttribute('aria-label', 'Play music'); btn.title = 'Play music';
-      try { localStorage.setItem('bgm', '0'); } catch (e) {}
     }
     btn.addEventListener('click', function () { playing ? pause() : play(); });
     addEventListener('keydown', function (e) {
@@ -947,8 +958,7 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     // try to start straight away; browsers that block it fall through to the first tap
     audio.addEventListener('canplay', function once() {
       audio.removeEventListener('canplay', once);
-      var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
-      if (pref !== '0') play();
+      play();                       // works where autoplay is allowed; phones fall through to the first touch
     });
     // phones block audio until the visitor touches the page, so start on the
     // very first interaction of any kind — including a tap on the opening lamp
@@ -958,12 +968,11 @@ footer { text-align: center; padding: 16px 0 30px; font-size: 13px; color: rgba(
     var evs = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'];
     function unhook() { evs.forEach(function (e) { removeEventListener(e, kick, true); }); }
     function kick() {
-      var pref = null; try { pref = localStorage.getItem('bgm'); } catch (e) {}
-      if (pref === '0') { unhook(); return; }        // they asked for silence
       play();
       setTimeout(function () { if (!audio.paused) unhook(); }, 400);
     }
     evs.forEach(function (e) { addEventListener(e, kick, { passive: true, capture: true }); });
+    window.__startMusic = kick;
     var v = document.getElementById('veil');
     if (v) v.addEventListener('click', kick, { passive: true });
 
