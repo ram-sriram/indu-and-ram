@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ram &amp; Indu — Kalyanam · 18–19 December 2026 · Eluru</title>
+<meta name="description" content="Reception Friday 18 December 2026, 7 PM · Sumuhurtham 3:41 AM, early hours of Saturday 19 December · V.T.R. Grand A/C, Agraharam, Eluru.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0A1F">
+<link rel="icon" href="../favicon.svg">
+<meta property="og:title" content="Indu &amp; Ram — Kalyanam · 18–19 December 2026">
+<meta property="og:description" content="Reception Fri 18 Dec, 7 PM · Sumuhurtham 3:41 AM · V.T.R. Grand A/C, Eluru">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ram-sriram.github.io/indu-and-ram/wedding/">
+<meta property="og:image" content="https://ram-sriram.github.io/indu-and-ram/assets/og-wedding.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script>
+  // which family is sending: decided before first paint so nothing flashes
+  (function () {
+    var s = new URLSearchParams(location.search).get('side') === 'bride' ? 'bride' : 'groom';
+    document.documentElement.setAttribute('data-side', s);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=Marcellus+SC&amp;family=Great+Vibes&amp;family=Tiro+Telugu&amp;family=Tiro+Devanagari+Hindi&amp;display=swap">
+<style>
+:root {
+  --night: #0B0A1F;
+  --gold: #D4A64A; --gold-hi: #F3D892; --gold-deep: #9A7128; --gold-ink: #8A6420;
+  --ivory: #FBF5E6; --ivory-2: #F1E3C4;
+  --ink: #2E1810; --ink-soft: #6B4A33; --maroon: #6E1423; --kumkum: #B32D2A;
+  --leaf: #24502F; --marigold: #EFA33A; --rose: #D9708C;
+  --sky-top: #160f33; --sky-mid: #3b1d4d; --sky-bot: #7a3550;
+  --serif: 'Cormorant Garamond', 'Didot', Georgia, serif;
+  --caps: 'Marcellus SC', 'Cormorant Garamond', Georgia, serif;
+  --script: 'Great Vibes', 'Cormorant Garamond', cursive;
+  --te: 'Tiro Telugu', 'Noto Serif Telugu', 'Kohinoor Telugu', 'Telugu MN', 'Gautami', serif;
+  --dev: 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', 'Kohinoor Devanagari', 'Devanagari MT', serif;
+  --spring: cubic-bezier(.34, 1.4, .5, 1);
+  --glide: cubic-bezier(.2, .8, .2, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; max-width: 100%; scroll-behavior: smooth; background: var(--night); }
+body { min-height: 100svh; font-family: var(--serif); color: var(--ivory); overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; font-variant-numeric: lining-nums; }
+html[data-side="groom"] .only-bride { display: none !important; }
+html[data-side="bride"] .only-groom { display: none !important; }
+[hidden] { display: none !important; }
+
+/* ================= the sky: dusk → night → dawn, driven by scroll ================= */
+#sky { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, var(--sky-bot) 100%); }
+#stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.star { position: absolute; border-radius: 50%; background: #FFF4D6; animation: twinkle ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .18; transform: scale(.75); } 50% { opacity: .95; transform: scale(1); } }
+main { position: relative; z-index: 2; }
+section { position: relative; min-height: 78svh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 11svh 18px; text-align: center; }
+
+/* ================= reveals: every chapter enters its own way ================= */
+.rv { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .9s var(--glide); }
+.in .rv { opacity: 1; transform: none; }
+.rv.d1 { transition-delay: .15s; } .rv.d2 { transition-delay: .3s; } .rv.d3 { transition-delay: .45s; }
+.rv.d4 { transition-delay: .6s; } .rv.d5 { transition-delay: .75s; }
+/* inside a card, content waits for the card to finish arriving */
+.card .rv { transition-delay: .65s; }
+.card .rv.d1 { transition-delay: .8s; } .card .rv.d2 { transition-delay: .95s; } .card .rv.d3 { transition-delay: 1.1s; }
+.card .rv.d4 { transition-delay: 1.25s; } .card .rv.d5 { transition-delay: 1.4s; }
+
+.reveal-glow { opacity: 0; filter: blur(8px); transform: translateY(26px);
+  transition: opacity 1s ease, filter 1.1s ease, transform 1.1s var(--glide); }
+.in .reveal-glow { opacity: 1; filter: none; transform: none; }
+.reveal-rise { opacity: 0; transform: translateY(64px) scale(.93); transition: opacity .9s ease, transform 1.15s var(--spring); }
+.in .reveal-rise { opacity: 1; transform: none; }
+.reveal-tilt { opacity: 0; transform: perspective(1100px) rotateX(-15deg) translateY(30px); transform-origin: top center;
+  transition: opacity .9s ease, transform 1.1s cubic-bezier(.2, .9, .3, 1); }
+.in .reveal-tilt { opacity: 1; transform: none; }
+.reveal-zoom { opacity: 0; transform: scale(.88); transition: opacity .8s ease, transform 1.05s var(--spring); }
+.in .reveal-zoom { opacity: 1; transform: none; }
+/* the invitation unrolls like a scroll: bottom edge and its roller travel together */
+.reveal-unroll { clip-path: inset(-60px -40px 100% -40px); transition: clip-path 1.6s cubic-bezier(.6, .05, .3, 1); }
+.in .reveal-unroll { clip-path: inset(-60px -40px 0% -40px); }
+.reveal-unroll.unrolled { clip-path: none; }
+
+/* ================= opening: the temple doors ================= */
+#doors { position: fixed; inset: 0; z-index: 60; perspective: 1500px; overflow: hidden; background: #0d0716;
+  transition: background 1s ease, opacity .8s ease; }
+#doors.open { background: transparent; }
+#doors.gone { opacity: 0; pointer-events: none; }
+.door { position: absolute; top: 0; bottom: 0; width: 50%; transition: transform 2.1s cubic-bezier(.65, 0, .25, 1);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.28), transparent 26%, transparent 74%, rgba(0,0,0,.34)),
+    repeating-linear-gradient(90deg, #4b2514 0 7px, #56301b 7px 13px, #3f1f11 13px 21px);
+  box-shadow: inset 0 0 0 5px #24100a, inset 0 0 0 8px #C9962E, inset 0 0 0 10px #24100a; }
+.door.l { left: 0; transform-origin: left center; }
+.door.r { right: 0; transform-origin: right center; }
+#doors.open .door.l { transform: rotateY(-106deg); }
+#doors.open .door.r { transform: rotateY(106deg); }
+.door-panel { position: absolute; inset: 11% 15% 9%; border: 2px solid #C9962E; border-radius: 3px;
+  background-image: radial-gradient(circle at center, #F0CE7E 0 2.4px, #8A6420 3px, transparent 3.5px);
+  background-size: 30px 30px; background-position: center;
+  box-shadow: inset 0 0 0 4px rgba(36,16,10,.85), inset 0 0 0 6px rgba(201,150,46,.45); }
+.medal-wrap { position: absolute; top: 50%; transform: translateY(-50%); width: min(13vw, 62px); height: min(26vw, 124px); overflow: hidden; }
+.door.l .medal-wrap { right: 0; } .door.r .medal-wrap { left: 0; }
+.medal-wrap svg { position: absolute; top: 0; width: min(26vw, 124px); height: min(26vw, 124px); }
+.door.l .medal-wrap svg { left: 0; } .door.r .medal-wrap svg { right: 0; }
+.seam { position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; transform: translateX(-50%); z-index: 3;
+  background: linear-gradient(transparent 4%, rgba(255,222,150,.95) 30%, rgba(255,236,190,1) 52%, rgba(255,222,150,.95) 74%, transparent 96%);
+  filter: blur(.6px); box-shadow: 0 0 18px 4px rgba(255,205,120,.55); opacity: 0; transition: opacity 1.2s ease; }
+#doors.lit .seam { opacity: 1; }
+#doors.open .seam { opacity: 0; transition-duration: .4s; }
+.door-glow { position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 52%, rgba(255,226,160,.9), rgba(255,180,100,.42) 30%, rgba(255,160,90,0) 64%);
+  opacity: 0; transition: opacity 1.1s ease .2s; }
+#doors.open .door-glow { opacity: 1; }
+#doors.gone .door-glow { opacity: 0; }
+.door-toran { position: absolute; top: 0; left: 0; width: 100%; z-index: 4; transition: opacity .6s ease; }
+.door-bells { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); width: 150px; display: flex;
+  justify-content: space-between; z-index: 4; transition: opacity .6s ease; }
+.door-bells svg { width: 30px; transform-origin: 50% 0; animation: swing 2.4s ease-in-out infinite; }
+.door-bells svg:last-child { animation-delay: -1.2s; }
+@keyframes swing { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+.door-word { position: absolute; left: 0; right: 0; top: calc(50% - min(26vw, 124px) / 2 - 46px); z-index: 4;
+  font-family: var(--te); color: #F3D892; font-size: 17px; letter-spacing: .05em; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,.6);
+  transition: opacity .5s ease; }
+#doors.open .door-toran, #doors.open .door-bells, #doors.open .door-word { opacity: 0; }
+
+/* ================= hero ================= */
+.hero { min-height: 100svh; justify-content: flex-start; padding: max(84px, 12.5svh) 18px 0; overflow: hidden; }
+/* the tower takes only the room left under the words, so it never climbs over them on short screens */
+.temple { position: relative; flex: 1 0 auto; align-self: stretch; min-height: max(210px, 34svh); margin-top: 2.4svh; z-index: 1; }
+.toran { position: absolute; top: 0; left: 0; width: 100%; height: auto; transform: translateY(-105%);
+  transition: transform 1.3s var(--spring); z-index: 2; }
+.hero.in .toran { transform: none; }
+.moon { position: absolute; top: max(50px, 6.4svh); right: 6%; width: clamp(38px, 11vw, 56px); opacity: 0; transition: opacity 1.8s ease .5s; z-index: 0; }
+.hero.in .moon { opacity: 1; }
+.hero-inner { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; }
+.benediction { font-family: var(--te); color: var(--gold-hi); font-size: clamp(13.5px, 3.7vw, 18px); letter-spacing: .03em;
+  text-shadow: 0 2px 10px rgba(0,0,0,.5); }
+.benediction-en { font-family: var(--caps); font-size: clamp(10px, 2.75vw, 12.5px); letter-spacing: .16em; white-space: nowrap; color: var(--gold); margin-top: 6px; }
+.hero-names { font-family: var(--serif); font-weight: 600; font-size: clamp(60px, 17.5vw, 132px); line-height: 1;
+  letter-spacing: .01em; margin: 3svh 0 1.2svh;
+  background: linear-gradient(100deg, #E9C877 0%, #FFF1C6 22%, #D4A64A 44%, #FCE7AE 62%, #B8862F 80%, #F3D892 100%);
+  background-size: 230% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 14px rgba(0,0,0,.45)); }
+.hero.in .hero-names { animation: foil 7s ease-in-out 2.2s infinite; }
+@keyframes foil { 0%, 100% { background-position: 82% 0; } 50% { background-position: 18% 0; } }
+.hero-names .amp { font-family: var(--script); font-weight: 400; font-size: .6em; margin: 0 .04em; }
+.kalyanam { font-family: var(--caps); letter-spacing: .44em; text-indent: .44em; color: var(--gold-hi); font-size: clamp(12.5px, 3.4vw, 16px); }
+.tri { display: flex; gap: 12px; justify-content: center; align-items: baseline; margin-top: 10px; color: var(--gold-hi);
+  font-size: clamp(16px, 4.4vw, 22px); }
+.tri .te { font-family: var(--te); } .tri .dv { font-family: var(--dev); } .tri i { font-style: normal; color: var(--gold); font-size: .7em; }
+.hero-date { margin-top: 2.8svh; font-style: italic; font-size: clamp(17px, 4.6vw, 23px); color: #F6E9CF; }
+.hero-times { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: center;
+  font-family: var(--caps); font-size: clamp(11px, 3vw, 13.5px); letter-spacing: .16em; color: var(--gold-hi); }
+.hero-times i { font-style: normal; color: var(--gold); }
+.scroll-cue { margin-top: 2.6svh; font-family: var(--caps); font-size: 10.5px; letter-spacing: .34em; color: rgba(243,216,146,.7);
+  animation: bob 2.4s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.gopuram { position: absolute; bottom: 0; left: 50%; width: min(72vw, 430px); height: 100%; z-index: 1;
+  transform: translate(-50%, 42%); opacity: 0; transition: transform 1.8s var(--glide) .25s, opacity 1.4s ease .25s; }
+.hero.in .gopuram { transform: translate(-50%, 0); opacity: 1; }
+.banana { position: absolute; bottom: -2px; width: min(36vw, 220px); height: auto; z-index: 2; transform-origin: 50% 100%;
+  transform: scaleY(.15); opacity: 0; transition: transform 1.4s var(--spring) .55s, opacity .9s ease .55s; }
+.banana.l { left: 0; }
+.banana.r { right: 0; transform: scaleX(-1) scaleY(.15); }
+.hero.in .banana.l { transform: scaleY(1); opacity: 1; }
+.hero.in .banana.r { transform: scaleX(-1) scaleY(1); opacity: 1; }
+
+/* ================= cards ================= */
+.card { position: relative; width: 100%; max-width: 600px; color: var(--ink); border-radius: 6px;
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,0) 0 3px, rgba(255,255,255,.22) 3px 4px),
+    linear-gradient(165deg, #FFFBF2 0%, var(--ivory) 42%, var(--ivory-2) 100%);
+  padding: clamp(40px, 8vw, 58px) clamp(24px, 6.4vw, 52px);
+  box-shadow: 0 0 0 1px rgba(212,166,74,.6), 0 34px 74px -26px rgba(0,0,0,.8), 0 0 70px -14px rgba(241,212,136,.22); }
+.card::before { content: ''; position: absolute; inset: 9px; border: 1.4px solid var(--gold); border-radius: 3px; pointer-events: none; }
+.card::after { content: ''; position: absolute; inset: 14px; border: .8px solid rgba(212,166,74,.5); border-radius: 2px; pointer-events: none; }
+.card > :not(.corner):not(.crown):not(.roller) { position: relative; z-index: 1; }
+.corner { position: absolute; width: 34px; height: 34px; pointer-events: none; z-index: 1; }
+.corner.tl { top: 18px; left: 18px; }
+.corner.tr { top: 18px; right: 18px; transform: scaleX(-1); }
+.corner.bl { bottom: 18px; left: 18px; transform: scaleY(-1); }
+.corner.br { bottom: 18px; right: 18px; transform: scale(-1, -1); }
+.label { font-family: var(--caps); font-size: 12px; letter-spacing: .36em; text-indent: .36em; color: var(--gold-deep); margin-bottom: 16px; }
+.label .te { font-family: var(--te); letter-spacing: .04em; text-indent: 0; font-size: 13.5px; }
+.divider { display: block; width: 150px; height: 18px; margin: 18px auto; }
+.btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--caps); font-size: 13.5px; letter-spacing: .12em;
+  text-decoration: none; border-radius: 4px; padding: 12px 18px 11px; margin: 6px 4px 0; cursor: pointer; min-height: 44px;
+  border: 1px solid var(--gold); color: var(--maroon); background: rgba(255,255,255,.4); transition: background .25s, color .25s, transform .18s var(--spring); }
+.btn:hover { background: var(--maroon); color: var(--gold-hi); }
+.btn:active { transform: scale(.95); }
+.btn:focus-visible { outline: 2px solid var(--kumkum); outline-offset: 2px; }
+.btn.primary { background: var(--maroon); color: var(--gold-hi); border-color: var(--maroon); }
+.btn.tel { font-family: var(--serif); font-weight: 600; font-size: 18px; letter-spacing: .03em; }
+.btn.wa { border-color: #1FA855; color: #17753C; }
+.btn.wa:hover { background: #1FA855; color: #fff; }
+
+/* ================= blessings ================= */
+.ganesha { width: min(150px, 40vw); margin: 0 auto 6px; display: block; }
+.ganesha path, .ganesha circle:not(.dots) { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.ganesha .dots { opacity: 0; transition: opacity 1.2s ease 1.6s; }
+#blessing.in .ganesha .dots { opacity: .7; }
+.ganesha [fill]:not([fill="none"]) { fill-opacity: 0; }
+#blessing.in .ganesha path, #blessing.in .ganesha circle:not(.dots) { animation: draw 2.4s ease .7s forwards; }
+#blessing.in .ganesha [fill]:not([fill="none"]) { animation: draw 2.4s ease .7s forwards, fillIn 1.2s ease 2.8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fillIn { to { fill-opacity: 1; } }
+.invoke { font-family: var(--te); color: var(--kumkum); font-size: 16px; }
+.shloka { font-family: var(--te); font-size: clamp(16px, 4.3vw, 19.5px); line-height: 2; color: var(--maroon); margin-top: 14px; }
+.shloka span { display: inline-block; }
+.shloka-en { font-style: italic; font-size: clamp(15px, 4vw, 17.5px); line-height: 1.6; color: var(--ink-soft); margin-top: 10px; }
+.amma { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(212,166,74,.45); }
+.amma svg { width: 46px; display: block; margin: 0 auto 8px; }
+.amma .flame { transform-origin: 50% 100%; animation: flicker 1.8s ease-in-out infinite; }
+@keyframes flicker { 0%, 100% { transform: scale(1) rotate(0); } 30% { transform: scale(1.07) rotate(-2deg); } 62% { transform: scale(.95) rotate(1.6deg); } }
+.amma-te { font-family: var(--te); font-size: clamp(15px, 4vw, 18px); color: var(--maroon); line-height: 1.8; }
+.amma-en { font-style: italic; font-size: clamp(15px, 4vw, 18px); color: var(--ink-soft); line-height: 1.5; margin-top: 4px; }
+.amma-en b { font-style: normal; font-weight: 600; color: var(--maroon); }
+
+/* ================= the invitation (scroll) ================= */
+.scroll { padding-top: clamp(56px, 11vw, 70px); padding-bottom: clamp(54px, 10vw, 68px); }
+.crown { position: absolute; top: -27px; left: 50%; transform: translateX(-50%); width: 120px; height: 52px; z-index: 2; }
+.roller { position: absolute; left: -12px; right: -12px; height: 16px; border-radius: 8px; z-index: 3;
+  background: linear-gradient(180deg, #F6DFA0 0%, #D4A64A 45%, #8A6420 100%);
+  box-shadow: 0 4px 10px -3px rgba(0,0,0,.55); }
+.roller::before, .roller::after { content: ''; position: absolute; top: -3px; width: 12px; height: 22px; border-radius: 6px;
+  background: linear-gradient(180deg, #F3D892, #9A7128); }
+.roller::before { left: -6px; } .roller::after { right: -6px; }
+.roller.top { top: -8px; }
+.roller.bottom { top: calc(0% - 8px); transition: top 1.6s cubic-bezier(.6, .05, .3, 1); }
+#invitation.in .roller.bottom { top: calc(100% - 8px); }
+.lang-toggle { display: inline-flex; border: 1px solid var(--gold); border-radius: 22px; padding: 3px; margin: 2px 0 18px; background: rgba(255,255,255,.5); }
+.lang-toggle button { font-family: var(--caps); font-size: 12.5px; letter-spacing: .12em; border: none; background: transparent;
+  color: var(--ink-soft); padding: 8px 16px; border-radius: 18px; cursor: pointer; min-height: 36px; }
+.lang-toggle button[data-lang="te"] { font-family: var(--te); letter-spacing: .02em; font-size: 14px; }
+.lang-toggle button[aria-selected="true"] { background: var(--maroon); color: var(--gold-hi); }
+.lang-toggle button:focus-visible { outline: 2px solid var(--kumkum); outline-offset: 1px; }
+.inv-title { font-weight: 600; font-size: clamp(24px, 6.6vw, 33px); color: var(--maroon); line-height: 1.15; text-wrap: balance; }
+.inv-title small { display: block; font-family: var(--caps); font-weight: 400; font-size: 11.5px; letter-spacing: .3em; color: var(--gold-deep); margin-top: 8px; }
+.inv-lead { font-style: italic; font-size: clamp(16px, 4.3vw, 19px); line-height: 1.6; color: var(--ink-soft); margin: 18px auto 16px; max-width: 34ch; text-wrap: balance; }
+.inv-name { font-weight: 600; font-size: clamp(27px, 7.6vw, 40px); color: var(--maroon); line-height: 1.15; text-wrap: balance; }
+.inv-name small { display: block; font-family: var(--caps); font-weight: 400; font-size: 11px; letter-spacing: .28em; color: var(--gold-deep); margin-bottom: 4px; }
+.inv-with { font-family: var(--script); font-size: 34px; color: var(--gold-deep); line-height: 1; margin: 10px 0 8px; }
+.inv-line { font-style: italic; font-size: clamp(14.5px, 3.9vw, 17px); color: var(--ink-soft); line-height: 1.55; margin-top: 8px; text-wrap: balance; }
+.inv-block { margin-top: 4px; }
+.inv-h { font-family: var(--caps); font-size: 12px; letter-spacing: .32em; text-indent: .32em; color: var(--gold-deep); margin: 22px 0 6px; }
+.inv-p { font-size: clamp(16.5px, 4.4vw, 19px); line-height: 1.5; color: var(--ink); text-wrap: balance; }
+.inv-p b { font-weight: 700; color: var(--maroon); }
+.inv-p .sub { display: block; font-style: italic; font-size: .9em; color: var(--ink-soft); }
+.inv-astro { font-style: italic; font-size: clamp(14px, 3.7vw, 16px); color: var(--ink-soft); line-height: 1.6; margin-top: 6px; text-wrap: balance; }
+.te-block p { font-family: var(--te); font-size: clamp(15.5px, 4.1vw, 18px); line-height: 1.95; color: var(--ink); }
+.te-block .inv-title { font-family: var(--te); font-weight: 400; font-size: clamp(22px, 6vw, 29px); line-height: 1.5; }
+.te-block b { font-weight: 400; color: var(--maroon); font-size: 1.2em; }
+.nw { white-space: nowrap; }
+.te-block .small { font-size: clamp(14px, 3.7vw, 16px); color: var(--ink-soft); }
+.te-block .inv-h { font-family: var(--te); letter-spacing: .04em; text-indent: 0; font-size: 15px; color: var(--gold-ink); }
+
+/* ================= the couple ================= */
+#couple { min-height: auto; padding: 14svh 18px; }
+.couple { position: relative; width: min(84vw, 430px); margin: 0 auto; }
+.aura { position: relative; width: 100%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 50% 44%, #FFF9EA 0%, #FBEFD2 55%, #F0DCAE 100%);
+  box-shadow: 0 0 0 2px rgba(212,166,74,.95), 0 0 0 9px rgba(212,166,74,.16), 0 0 90px 14px rgba(241,212,136,.26); }
+.aura-ring { position: absolute; inset: -13px; border-radius: 50%; border: 1.5px dashed rgba(243,216,146,.6); animation: spin 90s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.aura img { position: absolute; left: 50%; bottom: 3%; height: 95%; width: auto; transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }
+.aura img.fallback { transform: translateX(-53%); }
+.couple-names { margin-top: 30px; }
+.couple-names .te { font-family: var(--te); color: var(--gold-hi); font-size: clamp(17px, 4.6vw, 22px); }
+.couple-names .weds { font-family: var(--script); color: var(--gold-hi); font-size: clamp(42px, 12vw, 64px); line-height: 1.15;
+  text-shadow: 0 3px 16px rgba(0,0,0,.5); }
+.couple-names .dv { font-family: var(--dev); color: rgba(243,216,146,.85); font-size: clamp(15px, 4vw, 19px); }
+
+/* ================= celebrations ================= */
+.revathi { position: absolute; top: 5svh; right: 12%; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  opacity: 0; transition: opacity 1.6s ease; z-index: 0; }
+#events.in .revathi { opacity: 1; }
+.rstar { width: 9px; height: 9px; border-radius: 50%; background: #FFFBEA;
+  box-shadow: 0 0 6px 2px #fff, 0 0 18px 6px rgba(243,216,146,.75), 0 0 40px 14px rgba(243,216,146,.25); animation: pulse 3.2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+.rlabel { font-family: var(--caps); font-size: 10.5px; letter-spacing: .26em; color: rgba(243,216,146,.85); }
+.timeline { position: relative; text-align: left; margin: 6px 0 4px; padding-left: 62px; }
+.tl-line { position: absolute; left: 25px; top: 18px; bottom: 34px; width: 2px; background: linear-gradient(var(--gold), var(--gold-deep));
+  transform: scaleY(0); transform-origin: top; transition: transform 1.4s ease .6s; }
+#events.in .tl-line { transform: scaleY(1); }
+.ev { position: relative; padding: 4px 0 26px; }
+.ev-icon { position: absolute; left: -62px; top: 0; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle, #FFFDF5, var(--ivory-2)); box-shadow: 0 0 0 1.5px var(--gold), 0 6px 14px -6px rgba(0,0,0,.4);
+  transform: scale(0); transition: transform .7s var(--spring); }
+.ev-icon svg { width: 28px; height: 28px; }
+#events.in .ev1 .ev-icon { transform: scale(1); transition-delay: .9s; }
+#events.in .ev2 .ev-icon { transform: scale(1); transition-delay: 1.5s; }
+.ev-day { font-family: var(--caps); font-size: 11.5px; letter-spacing: .18em; color: var(--gold-deep); line-height: 1.5; }
+.ev h3 { font-weight: 600; font-size: clamp(24px, 6.4vw, 31px); color: var(--maroon); line-height: 1.15; margin-top: 2px; }
+.ev .ev-te { font-family: var(--te); font-size: 15.5px; color: var(--ink-soft); }
+.ev-time { font-size: clamp(17px, 4.6vw, 20px); color: var(--ink); margin-top: 4px; }
+.ev-time.big { font-weight: 700; font-size: clamp(30px, 8.6vw, 42px); color: var(--kumkum); line-height: 1.1; }
+.ev-astro { font-style: italic; font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
+.venue-line { font-style: italic; font-size: clamp(15px, 4vw, 17.5px); color: var(--ink-soft); border-top: 1px solid rgba(212,166,74,.4); padding-top: 16px; }
+.countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(6px, 2vw, 10px); margin-top: 18px; }
+.cd { padding: 10px 4px 8px; border: 1.4px solid rgba(212,166,74,.65); border-radius: 6px; background: rgba(241,212,136,.14); }
+.cd b { display: block; font-size: clamp(22px, 6.4vw, 30px); font-weight: 600; color: var(--maroon); font-variant-numeric: lining-nums tabular-nums; line-height: 1.1; }
+.cd b.tick { animation: pop .5s var(--spring); }
+@keyframes pop { 40% { transform: scale(1.18); } }
+.cd span { font-family: var(--caps); font-size: 10.5px; letter-spacing: .14em; color: var(--ink-soft); }
+.cd-cap { font-style: italic; font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
+
+/* ================= venue ================= */
+.v-name { font-weight: 700; font-size: clamp(28px, 7.8vw, 38px); color: var(--maroon); line-height: 1.1; }
+.v-te { font-family: var(--te); font-size: 16px; color: var(--ink-soft); margin-top: 2px; }
+.v-addr { font-style: italic; font-size: clamp(16px, 4.3vw, 19px); color: var(--ink-soft); margin: 6px 0 18px; }
+.map { position: relative; border: 1.5px solid var(--gold); border-radius: 6px; overflow: hidden; background: #EADCBF; }
+.map iframe { display: block; width: 100%; height: min(62vw, 330px); border: 0; opacity: 0; transition: opacity .6s ease; }
+.map.map-on iframe { opacity: 1; }
+.map-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; padding: 18px; color: var(--ink-soft); font-style: italic; font-size: 15px; }
+.map.map-on .map-fallback { display: none; }
+
+/* ================= with love (contact) ================= */
+.host { font-weight: 600; font-size: clamp(25px, 7vw, 34px); color: var(--maroon); line-height: 1.2; }
+.host span { display: block; font-weight: 500; font-style: italic; font-size: .62em; color: var(--ink-soft); margin-top: 4px; }
+.host-te { font-family: var(--te); font-size: 16.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.7; }
+.addr { font-style: italic; font-size: 15.5px; color: var(--ink-soft); margin-top: 6px; }
+.contacts { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.contact { display: flex; flex-wrap: wrap; justify-content: center; }
+.contact .btn { margin: 4px; }
+
+/* ================= finale: dawn ================= */
+.finale { min-height: 100svh; overflow: hidden; color: var(--maroon); }
+.sun { position: absolute; left: 50%; bottom: -46%; width: min(130vw, 760px); aspect-ratio: 1; border-radius: 50%; z-index: 0;
+  transform: translate(-50%, 26%); opacity: 0; pointer-events: none;
+  background: radial-gradient(circle, #FFF8E2 0%, #FFE6A6 24%, rgba(255,196,118,.6) 44%, rgba(255,176,110,0) 68%);
+  transition: transform 2.6s var(--glide), opacity 2s ease; }
+.finale.in .sun { transform: translate(-50%, 0); opacity: 1; }
+.finale > :not(.sun):not(.grains) { position: relative; z-index: 2; }
+.grains { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.grain { position: absolute; top: -20px; width: 4px; height: 8px; border-radius: 50%; opacity: 0;
+  animation: fall linear infinite; animation-play-state: paused; }
+.finale.in .grain { animation-play-state: running; }
+@keyframes fall { 0% { transform: translateY(0) rotate(0); opacity: 0; } 8% { opacity: .95; } 92% { opacity: .9; }
+  100% { transform: translateY(104svh) rotate(400deg); opacity: 0; } }
+.fin-label { font-family: var(--caps); font-size: 12px; letter-spacing: .36em; text-indent: .36em; color: var(--gold-ink); }
+.fin-te { font-family: var(--te); font-size: clamp(16.5px, 4.5vw, 20px); line-height: 1.95; margin-top: 14px; max-width: 30ch;
+  text-shadow: 0 0 18px rgba(255,244,222,.8); }
+.fin-en { font-style: italic; font-size: clamp(16px, 4.3vw, 19px); line-height: 1.6; color: #5A2A22; margin-top: 12px; max-width: 34ch;
+  text-shadow: 0 0 18px rgba(255,244,222,.8); }
+.awaiting { font-family: var(--script); font-size: clamp(40px, 11vw, 62px); line-height: 1.15; color: var(--maroon); margin-top: 22px;
+  text-shadow: 0 0 24px rgba(255,244,222,.9); }
+.compliments { margin-top: 20px; font-style: italic; font-size: clamp(14.5px, 3.8vw, 17.5px); line-height: 1.6; color: #5A2A22;
+  max-width: min(100%, 50ch); text-wrap: balance; text-shadow: 0 0 16px rgba(255,244,222,.8); }
+.compliments .lbl { display: block; font-style: normal; font-family: var(--caps); font-size: 11px; letter-spacing: .3em; color: var(--gold-ink); margin-bottom: 4px; }
+.compliments .te { display: block; font-family: var(--te); font-style: normal; font-size: .95em; margin-top: 6px; }
+.families { margin-top: 22px; font-family: var(--caps); font-size: clamp(12.5px, 3.4vw, 15px); letter-spacing: .3em; text-indent: .3em; color: var(--maroon); }
+.foot-date { margin-top: 10px; font-family: var(--caps); font-size: 11px; letter-spacing: .28em; color: var(--gold-ink); }
+
+/* ================= music ================= */
+#music { position: fixed; right: 16px; bottom: 16px; z-index: 55; width: 50px; height: 50px; border-radius: 50%;
+  border: 1.4px solid var(--gold); background: rgba(20,12,36,.82); color: var(--gold-hi); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px -8px rgba(0,0,0,.8); transition: transform .2s var(--spring), background .25s; }
+#music:not(.playing) { animation: ring 2.6s ease-out infinite; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(243,216,146,.5); } 70% { box-shadow: 0 0 0 14px rgba(243,216,146,0); } 100% { box-shadow: 0 0 0 0 rgba(243,216,146,0); } }
+#music.playing { box-shadow: 0 0 0 3px rgba(212,166,74,.35), 0 6px 20px -8px rgba(0,0,0,.8); }
+#music .bars { display: none; gap: 2.5px; align-items: flex-end; height: 17px; }
+#music.playing .bars { display: flex; }
+#music.playing .note { display: none; }
+.bars i { width: 3px; background: var(--gold-hi); border-radius: 2px; animation: eq .9s ease-in-out infinite; }
+.bars i:nth-child(1) { height: 7px; } .bars i:nth-child(2) { height: 15px; animation-delay: .18s; } .bars i:nth-child(3) { height: 10px; animation-delay: .36s; }
+@keyframes eq { 0%, 100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
+.music-hint { position: fixed; right: 16px; bottom: 76px; z-index: 55; font-family: var(--caps); font-size: 12px; letter-spacing: .14em;
+  color: var(--gold-hi); background: rgba(20,12,36,.86); border: 1px solid rgba(212,166,74,.55); border-radius: 20px; padding: 7px 13px;
+  opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.music-hint.show { opacity: 1; }
+
+/* ================= reduced motion: a calm, complete page ================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #doors { display: none !important; }
+  .rv, .reveal-glow, .reveal-rise, .reveal-tilt, .reveal-zoom, .reveal-unroll {
+    opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; transition: none !important; }
+  .toran { transform: none !important; transition: none !important; }
+  .gopuram { transform: translate(-50%, 0) !important; opacity: 1 !important; transition: none !important; }
+  .banana.l { transform: none !important; opacity: 1 !important; transition: none !important; }
+  .banana.r { transform: scaleX(-1) !important; opacity: 1 !important; transition: none !important; }
+  .moon, .revathi { opacity: 1 !important; transition: none !important; }
+  .roller.bottom { top: calc(100% - 8px) !important; transition: none !important; }
+  .tl-line, .ev-icon { transform: none !important; transition: none !important; }
+  .sun { transform: translate(-50%, 0) !important; opacity: 1 !important; transition: none !important; }
+  .ganesha path, .ganesha circle:not(.dots) { stroke-dashoffset: 0 !important; animation: none !important; }
+  .ganesha .dots { opacity: .7 !important; transition: none !important; }
+  .ganesha [fill]:not([fill="none"]) { fill-opacity: 1 !important; }
+  .star, .hero-names, .hero.in .hero-names, .flame, .amma .flame, .grain, .rstar, .aura-ring, .scroll-cue,
+  .door-bells svg, #music, #music:not(.playing), .bars i, .cd b.tick { animation: none !important; }
+  .grain { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<div id="stars" aria-hidden="true"></div>
+
+<!-- shared drawing vocabulary -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gpFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2E1A4A"/><stop offset="100%" stop-color="#120a22"/></linearGradient>
+  <linearGradient id="gpEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F3D892"/><stop offset="100%" stop-color="#9A7128"/></linearGradient>
+  <radialGradient id="gpDoor" cx="50%" cy="80%" r="70%"><stop offset="0%" stop-color="#FFE9B0"/><stop offset="55%" stop-color="#F2B256"/><stop offset="100%" stop-color="#B8632A"/></radialGradient>
+  <linearGradient id="bellG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#9A7128"/><stop offset="45%" stop-color="#F6DFA0"/><stop offset="100%" stop-color="#9A7128"/></linearGradient>
+  <symbol id="corner" viewBox="0 0 34 34">
+    <path d="M2,2 C 15,2 24,8 25,18 C 26,25 20,27 17.5,23.5 C 15,20 18.5,16 22,18" fill="none" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M2,2 C 2,15 8,24 18,25 C 25,26 27,20 23.5,17.5" fill="none" stroke="#C9962E" stroke-width="1.3" stroke-linecap="round"/>
+    <circle cx="5.5" cy="5.5" r="2.4" fill="#D4A64A"/>
+  </symbol>
+  <symbol id="lotusdiv" viewBox="0 0 150 18">
+    <path d="M2,9 H54 M96,9 H148" stroke="#C9962E" stroke-width="1"/>
+    <path d="M75,1 C 80,6 80,12 75,17 C 70,12 70,6 75,1 Z" fill="#D4A64A"/>
+    <path d="M64,6 C 70,7 73,11 75,17 C 69,15 65,11 64,6 Z M86,6 C 80,7 77,11 75,17 C 81,15 85,11 86,6 Z" fill="#C9962E" opacity=".85"/>
+    <circle cx="58" cy="9" r="1.6" fill="#C9962E"/><circle cx="92" cy="9" r="1.6" fill="#C9962E"/>
+  </symbol>
+  <symbol id="kalasham" viewBox="0 0 120 52">
+    <path d="M4,46 H116" stroke="#C9962E" stroke-width="1.4"/>
+    <path d="M14,46 C 30,46 38,40 45,33 M106,46 C 90,46 82,40 75,33" stroke="#C9962E" stroke-width="1.2" fill="none"/>
+    <path d="M45,46 C 40,36 45,28 60,26 C 75,28 80,36 75,46 Z" fill="#D4A64A" stroke="#9A7128" stroke-width="1"/>
+    <path d="M48,36 H72" stroke="#B32D2A" stroke-width="1.6"/>
+    <rect x="52" y="21" width="16" height="6" rx="2" fill="#C9962E" stroke="#9A7128" stroke-width=".8"/>
+    <path d="M60,21 C 51,14 44,14 39,19 C 46,22 53,22 60,21 Z M60,21 C 69,14 76,14 81,19 C 74,22 67,22 60,21 Z" fill="#3E6B3A"/>
+    <ellipse cx="60" cy="13" rx="7.5" ry="8" fill="#8F5E32" stroke="#5E3B1C" stroke-width=".8"/>
+    <path d="M60,5 C 59,2 61,1 62,0" stroke="#3E6B3A" stroke-width="1.4" fill="none"/>
+  </symbol>
+  <symbol id="leaf" viewBox="-20 -200 50 205">
+    <path d="M0,0 C-22,-40 -26,-122 -5,-192 C5,-168 22,-108 17,-40 C15,-20 8,-7 0,0 Z" fill="#1F4A2C" stroke="rgba(233,196,106,.38)" stroke-width="1"/>
+    <path d="M0,0 C-7,-60 -9,-130 -5,-188" stroke="#3C7A4B" stroke-width="1.4" fill="none"/>
+  </symbol>
+  <symbol id="bell" viewBox="0 0 40 60">
+    <path d="M20,0 V11" stroke="#C9962E" stroke-width="2"/>
+    <path d="M8,40 C8,22 13,12 20,12 C27,12 32,22 32,40 L35,44 H5 Z" fill="url(#bellG)" stroke="#8A6420" stroke-width="1"/>
+    <circle cx="20" cy="50" r="4.2" fill="#C9962E"/>
+  </symbol>
+  <g id="toranset">
+      <path d="M35,16 C 28,26 27,38 35,50 C 43,38 42,26 35,16 Z" fill="#3E6B3A"/><circle cx="70" cy="20" r="6.5" fill="#E3A72F"/><circle cx="70" cy="20" r="3.4" fill="#C97B12"/>
+      <path d="M105,22 C 98,32 97,44 105,56 C 113,44 112,32 105,22 Z" fill="#3E6B3A"/><circle cx="140" cy="26" r="6.5" fill="#E3A72F"/><circle cx="140" cy="26" r="3.4" fill="#C97B12"/>
+      <path d="M175,25 C 168,35 167,47 175,59 C 183,47 182,35 175,25 Z" fill="#3E6B3A"/><circle cx="210" cy="26" r="6.5" fill="#E3A72F"/><circle cx="210" cy="26" r="3.4" fill="#C97B12"/>
+      <path d="M245,22 C 238,32 237,44 245,56 C 253,44 252,32 245,22 Z" fill="#3E6B3A"/><circle cx="280" cy="18" r="6.5" fill="#E3A72F"/><circle cx="280" cy="18" r="3.4" fill="#C97B12"/>
+      <path d="M315,22 C 308,32 307,44 315,56 C 323,44 322,32 315,22 Z" fill="#3E6B3A"/><circle cx="350" cy="26" r="6.5" fill="#E3A72F"/><circle cx="350" cy="26" r="3.4" fill="#C97B12"/>
+      <path d="M385,25 C 378,35 377,47 385,59 C 393,47 392,35 385,25 Z" fill="#3E6B3A"/><circle cx="420" cy="26" r="6.5" fill="#E3A72F"/><circle cx="420" cy="26" r="3.4" fill="#C97B12"/>
+      <path d="M455,22 C 448,32 447,44 455,56 C 463,44 462,32 455,22 Z" fill="#3E6B3A"/><circle cx="490" cy="20" r="6.5" fill="#E3A72F"/><circle cx="490" cy="20" r="3.4" fill="#C97B12"/>
+      <path d="M525,16 C 518,26 517,38 525,50 C 533,38 532,26 525,16 Z" fill="#3E6B3A"/>
+    </g>
+  <symbol id="medal" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="57" fill="#2a1209" stroke="#C9962E" stroke-width="3"/>
+    <circle cx="60" cy="60" r="48" fill="none" stroke="#E9C46A" stroke-width="1.1" stroke-dasharray="2 5"/>
+    <g fill="#D4A64A">
+      <path id="mpetal" d="M60,20 C 68,34 68,47 60,55 C 52,47 52,34 60,20 Z"/>
+      <use href="#mpetal" transform="rotate(45 60 60)"/><use href="#mpetal" transform="rotate(90 60 60)"/><use href="#mpetal" transform="rotate(135 60 60)"/>
+      <use href="#mpetal" transform="rotate(180 60 60)"/><use href="#mpetal" transform="rotate(225 60 60)"/><use href="#mpetal" transform="rotate(270 60 60)"/>
+      <use href="#mpetal" transform="rotate(315 60 60)"/>
+    </g>
+    <circle cx="60" cy="60" r="9" fill="#F3D892" stroke="#9A7128"/>
+  </symbol>
+</defs></svg>
+
+<!-- ================= opening: temple doors (open on their own) ================= -->
+<div id="doors" aria-hidden="true">
+  <div class="door-glow"></div>
+  <div class="door l"><div class="door-panel"></div><div class="medal-wrap"><svg viewBox="0 0 120 120"><use href="#medal"/></svg></div></div>
+  <div class="door r"><div class="door-panel"></div><div class="medal-wrap"><svg viewBox="0 0 120 120"><use href="#medal"/></svg></div></div>
+  <div class="seam"></div>
+  <svg class="door-toran" viewBox="0 0 560 64" aria-hidden="true">
+    <path d="M-10,6 Q140,30 280,6 T570,6" fill="none" stroke="#C9962E" stroke-width="2.5"/>
+    <use href="#toranset"/>
+  </svg>
+  <div class="door-bells"><svg viewBox="0 0 40 60"><use href="#bell"/></svg><svg viewBox="0 0 40 60"><use href="#bell"/></svg></div>
+  <p class="door-word">॥ శుభమస్తు ॥</p>
+</div>
+
+<main>
+  <!-- ================= HERO: dusk, the Dashami moon, the gopuram ================= -->
+  <section class="hero" id="hero">
+    <svg class="toran" viewBox="0 0 560 64" aria-hidden="true">
+      <path d="M-10,6 Q140,30 280,6 T570,6" fill="none" stroke="#C9962E" stroke-width="2.5"/>
+      <path d="M-10,10 Q140,34 280,10 T570,10" fill="none" stroke="rgba(201,150,46,.45)" stroke-width="1"/>
+      <use href="#toranset"/>
+    </svg>
+    <svg class="moon" viewBox="0 0 60 60" aria-hidden="true">
+      <defs><filter id="moonGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <circle cx="30" cy="30" r="26" fill="#F7E9C4" opacity=".1"/>
+      <path d="M30,4 A26,26 0 0 1 30,56 A15,26 0 0 1 30,4 Z" fill="#FBF1D6" filter="url(#moonGlow)"/>
+    </svg>
+
+    <div class="hero-inner">
+      <p class="benediction rv">॥ శ్రీరస్తు ॥ &nbsp;॥ శుభమస్తు ॥ &nbsp;॥ అవిఘ్నమస్తు ॥</p>
+      <p class="benediction-en rv">Sri Rasthu · Shubhamasthu · Avighnamasthu</p>
+      <h1 class="hero-names rv d1">
+        <span class="only-groom">Ram <span class="amp">&amp;</span> Indu</span>
+        <span class="only-bride">Indu <span class="amp">&amp;</span> Ram</span>
+      </h1>
+      <p class="kalyanam rv d2">Are getting married</p>
+      <div class="tri rv d2"><span class="te" lang="te">కళ్యాణం</span><i>✦</i><span class="dv" lang="hi">शुभविवाह</span><i>✦</i><span>Kalyanam</span></div>
+      <p class="hero-date rv d3">18 &amp; 19 December 2026 · Eluru</p>
+      <p class="hero-times rv d4"><span>Reception · 7 PM</span><i>✦</i><span>Sumuhurtham · 3:41 AM</span></p>
+      <p class="scroll-cue rv d5">scroll ⌄</p>
+    </div>
+
+    <div class="temple"><svg class="gopuram" id="gopuram" viewBox="48 58 304 364" preserveAspectRatio="xMidYMax meet" aria-hidden="true"></svg></div>
+    <svg class="banana l" viewBox="0 0 220 260" aria-hidden="true">
+      <path d="M58,262 C 60,220 62,190 66,150 L 78,150 C 76,190 74,222 74,262 Z" fill="#183a22" stroke="rgba(233,196,106,.3)" stroke-width="1"/>
+      <use href="#leaf" transform="translate(70,154) rotate(-52) scale(.78)"/>
+      <use href="#leaf" transform="translate(70,152) rotate(-18) scale(.92)"/>
+      <use href="#leaf" transform="translate(72,150) rotate(14) scale(.98)"/>
+      <use href="#leaf" transform="translate(72,152) rotate(44) scale(.86)"/>
+      <use href="#leaf" transform="translate(70,156) rotate(78) scale(.7)"/>
+      <use href="#leaf" transform="translate(66,200) rotate(-96) scale(.55)"/>
+    </svg>
+    <svg class="banana r" viewBox="0 0 220 260" aria-hidden="true">
+      <path d="M58,262 C 60,220 62,190 66,150 L 78,150 C 76,190 74,222 74,262 Z" fill="#183a22" stroke="rgba(233,196,106,.3)" stroke-width="1"/>
+      <use href="#leaf" transform="translate(70,154) rotate(-52) scale(.78)"/>
+      <use href="#leaf" transform="translate(70,152) rotate(-18) scale(.92)"/>
+      <use href="#leaf" transform="translate(72,150) rotate(14) scale(.98)"/>
+      <use href="#leaf" transform="translate(72,152) rotate(44) scale(.86)"/>
+      <use href="#leaf" transform="translate(70,156) rotate(78) scale(.7)"/>
+      <use href="#leaf" transform="translate(66,200) rotate(-96) scale(.55)"/>
+    </svg>
+  </section>
+
+  <!-- ================= BLESSINGS ================= -->
+  <section id="blessing">
+    <div class="card reveal-glow">
+      <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
+      <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
+      <p class="label rv">Blessings · <span class="te">ఆశీస్సులు</span></p>
+      <svg class="ganesha rv" viewBox="0 0 220 236" fill="none" aria-label="Lord Ganesha">
+      <g stroke="#A9781F" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="110" cy="116" r="96" stroke-width="1.4" opacity=".8" pathLength="1"/>
+      <circle cx="110" cy="116" r="88" stroke-width="1" class="dots" stroke-dasharray="1.5 6" opacity=".7"/>
+      <path pathLength="1" d="M84,70 C 66,58 50,66 52,82 C 54,96 68,102 84,96" fill="rgba(184,134,47,.18)"/>
+      <path pathLength="1" d="M136,70 C 154,58 170,66 168,82 C 166,96 152,102 136,96" fill="rgba(184,134,47,.18)"/>
+      <path pathLength="1" d="M60,78 C 62,86 68,90 76,90" stroke-width="1.4"/>
+      <path pathLength="1" d="M160,78 C 158,86 152,90 144,90" stroke-width="1.4"/>
+      <path pathLength="1" d="M84,86 C 82,62 94,50 110,50 C 126,50 138,62 136,86 C 136,93 134,98 130,101 L 90,101 C 86,98 84,93 84,86 Z" fill="rgba(212,166,74,.14)"/>
+      <path pathLength="1" d="M110,27 C 115,34 116,44 110,52 C 104,44 105,34 110,27 Z" fill="rgba(184,134,47,.3)"/>
+      <path pathLength="1" d="M96,38 C 100,42 101,50 97,56 C 92,50 92,42 96,38 Z" fill="rgba(184,134,47,.2)"/>
+      <path pathLength="1" d="M124,38 C 120,42 119,50 123,56 C 128,50 128,42 124,38 Z" fill="rgba(184,134,47,.2)"/>
+      <circle cx="110" cy="21" r="2.2" fill="#A9781F" pathLength="1"/>
+      <path pathLength="1" d="M110,58 L110,68 M104,60 L104,67 M116,60 L116,67" stroke-width="1.5"/>
+      <path pathLength="1" d="M98,84 q 4,3.5 8,0 M114,84 q 4,3.5 8,0" stroke-width="1.8"/>
+      <path pathLength="1" d="M122,102 C 125,108 124,114 119,118" stroke-width="2.2"/>
+      <path pathLength="1" d="M82,122 C 68,134 66,154 76,168 C 86,181 134,181 144,168 C 154,154 152,134 138,122" fill="rgba(212,166,74,.1)"/>
+      <path pathLength="1" d="M82,126 C 70,122 62,114 64,104" stroke-width="2.2"/>
+      <circle cx="62" cy="99" r="4" stroke-width="1.8" pathLength="1"/>
+      <path pathLength="1" d="M138,126 C 150,122 158,114 156,104" stroke-width="2.2"/>
+      <path pathLength="1" d="M151,100 q 5,-5 10,0" stroke-width="2"/>
+      <path pathLength="1" d="M110,101 C 111,111 109,119 101,125 C 93,131 89,138 94,145 C 98,151 106,151 108,145" stroke-width="3.4"/>
+      <circle cx="112" cy="140" r="4.6" stroke-width="1.8" pathLength="1"/>
+      <path pathLength="1" d="M92,162 Q 110,170 128,162" stroke-width="1.6"/>
+      <path pathLength="1" d="M78,172 Q 110,186 142,172" stroke-width="2.4"/>
+      <path pathLength="1" d="M110,188 C 116,194 116,202 110,208 C 104,202 104,194 110,188 Z" fill="rgba(184,134,47,.3)"/>
+      <path pathLength="1" d="M94,191 C 98,196 98,202 94,206 C 90,202 90,196 94,191 Z" fill="rgba(184,134,47,.2)"/>
+      <path pathLength="1" d="M126,191 C 122,196 122,202 126,206 C 130,202 130,196 126,191 Z" fill="rgba(184,134,47,.2)"/>
+      <path pathLength="1" d="M76,196 Q 110,212 144,196" stroke-width="1.6"/>
+      </g>
+      </svg>
+      <p class="invoke rv d1" lang="te">॥ శ్రీ గణేశాయ నమః ॥</p>
+      <p class="shloka rv d2" lang="sa"><span>మాంగల్యం తంతునానేన</span> <span>మమ జీవన హేతునా ।</span><br><span>కంఠే బధ్నామి సుభగే</span> <span>త్వం జీవ శరదాం శతమ్ ॥</span></p>
+      <p class="shloka-en rv d3">“With this sacred thread, the very reason of my life, I bind us together — may you flourish for a hundred autumns.”</p>
+      <div class="amma only-groom rv d4">
+        <svg viewBox="0 0 120 110" aria-hidden="true">
+          <g class="flame"><path d="M60,16 C 70,32 72,45 60,57 C 48,45 50,32 60,16 Z" fill="#F5B84A"/><path d="M60,29 C 65,37 66,45 60,51 C 54,45 55,37 60,29 Z" fill="#FFE9B5"/></g>
+          <path d="M24,66 C 40,60 80,60 96,66 C 92,82 76,92 60,92 C 44,92 28,82 24,66 Z" fill="#C9962E"/>
+          <path d="M24,66 C 40,72 80,72 96,66" stroke="#8A6420" stroke-width="2" fill="none"/>
+        </svg>
+        <p class="amma-te" lang="te">కీ.శే. శ్రీమతి శ్రీరామ్ రమాదేవి గారి ఆశీస్సులతో</p>
+        <p class="amma-en">With the divine blessings of<br><b>Late Smt. Sriram Rama Devi</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE INVITATION (unrolls like a scroll) ================= -->
+  <section id="invitation">
+    <div class="card scroll reveal-unroll" id="scroll">
+      <span class="roller top" aria-hidden="true"></span>
+      <span class="roller bottom" aria-hidden="true"></span>
+      <svg class="crown" viewBox="0 0 120 52" aria-hidden="true"><use href="#kalasham"/></svg>
+      <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
+      <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
+
+      <p class="label rv">The Invitation · <span class="te">ఆహ్వానము</span></p>
+      <div class="lang-toggle rv d1" role="tablist" aria-label="Language">
+        <button type="button" role="tab" data-lang="en" aria-selected="true">English</button>
+        <button type="button" role="tab" data-lang="te" aria-selected="false">తెలుగు</button>
+      </div>
+
+      <!-- English -->
+      <div class="inv" data-lang="en">
+        <div class="only-groom">
+          <p class="inv-title rv d1">The Sriram Family<small>Wedding Invitation</small></p>
+          <p class="inv-lead rv d2">With joy in our hearts, we invite you, with your family and friends, to grace the marriage of our only son and to bless the couple</p>
+          <p class="inv-name rv d2"><small>Chi.</small>Ram Kumar</p>
+          <p class="inv-with rv d3">with</p>
+          <p class="inv-name rv d3"><small>Chi. La. Sow.</small>Indu Krishna Veni</p>
+          <p class="inv-line rv d3">only daughter of<br>Smt. Anitha Gujjar &amp; Shri Radhanath Gujjar<br>Eluru, Andhra Pradesh</p>
+        </div>
+        <div class="only-bride">
+          <p class="inv-title rv d1">The Gujjar Family<small>Wedding Invitation</small></p>
+          <p class="inv-lead rv d2">We request your most gracious presence and blessings on the auspicious occasion of the marriage of our only daughter</p>
+          <p class="inv-name rv d2"><small>Chi. La. Sow.</small>Indu Krishna Veni</p>
+          <p class="inv-with rv d3">with</p>
+          <p class="inv-name rv d3"><small>Chi.</small>Ram Kumar</p>
+          <p class="inv-line rv d3">only son of<br><span class="nw">Late Smt. Sriram Rama Devi</span> <span class="nw">&amp; Shri Sriram Srinivas</span><br>Hyderabad, Telangana</p>
+        </div>
+        <svg class="divider rv d4" viewBox="0 0 150 18" aria-hidden="true"><use href="#lotusdiv"/></svg>
+        <div class="inv-block rv d4">
+          <p class="inv-h">Sumuhurtham</p>
+          <p class="inv-p">Friday night, 18<sup>th</sup> December 2026<br>at <b>3:41 AM</b><span class="sub">(early hours of Saturday, 19<sup>th</sup> December)</span></p>
+          <p class="inv-astro">Sri Parabhava nama samvatsara<br>Margashira shuddha dashami<br>Revathi nakshatra · Tula lagnam · Pushkaramsham</p>
+          <p class="inv-h">Kalyana Vedika</p>
+          <p class="inv-p">V.T.R. Grand A/C, Agraharam, Eluru</p>
+          <p class="inv-h">Reception &amp; Dinner</p>
+          <p class="inv-p">Friday, 18<sup>th</sup> December 2026<br>from 7:00 PM onwards<span class="sub">at the same venue</span></p>
+        </div>
+      </div>
+
+      <!-- తెలుగు -->
+      <div class="inv te-block" data-lang="te" lang="te" hidden>
+        <div class="only-groom">
+          <p class="inv-title">శ్రీరామ్ వారి వివాహ ఆహ్వానము</p>
+          <p>శ్రీ శ్రీరామ్ శ్రీనివాస్ వ్రాయు శుభలేఖార్థములు.</p>
+          <p>మా ఏకైక కుమారుడు</p>
+          <p>వరుడు చి॥ <b>రామ్ కుమార్</b>‌కు</p>
+          <p class="small">(ఆంధ్రప్రదేశ్, ఏలూరు వాస్తవ్యులు శ్రీ గుజ్జర్ రాధానాథ్ - శ్రీమతి అనిత గార్ల ఏకైక కుమార్తె)</p>
+          <p>వధువు చి॥ల॥సౌ॥ <b>ఇందు కృష్ణవేణి</b>ని</p>
+          <p>ఇచ్చి వివాహము జరుపుటకు పెద్దలు సుముహూర్తము నిశ్చయించినారు.</p>
+        </div>
+        <div class="only-bride">
+          <p class="inv-title">గుజ్జర్ వారి వివాహ ఆహ్వానము</p>
+          <p>శ్రీ గుజ్జర్ రాధానాథ్ - శ్రీమతి అనిత దంపతులు వ్రాయు శుభలేఖార్థములు.</p>
+          <p>మా ఏకైక కుమార్తె</p>
+          <p>వధువు చి॥ల॥సౌ॥ <b>ఇందు కృష్ణవేణి</b>ని</p>
+          <p>వరుడు చి॥ <b>రామ్ కుమార్</b>‌కు</p>
+          <p class="small">(తెలంగాణ, హైదరాబాద్ వాస్తవ్యులు శ్రీ శ్రీరామ్ శ్రీనివాస్ - కీ.శే. శ్రీమతి రమాదేవి గార్ల ఏకైక కుమారుడు)</p>
+          <p>ఇచ్చి వివాహము జరుపుటకు పెద్దలు సుముహూర్తము నిశ్చయించినారు.</p>
+        </div>
+        <svg class="divider" viewBox="0 0 150 18" aria-hidden="true"><use href="#lotusdiv"/></svg>
+        <p class="inv-h">సుముహూర్తం</p>
+        <p>స్వస్తిశ్రీ చాంద్రమానేన శ్రీ పరాభవ నామ సంవత్సర మార్గశిర శుద్ధ దశమి అనగా <span class="nw">ది. 18-12-2026</span> శుక్రవారం రాత్రి గం. <b>3:41</b> ని.లకు (తెల్లవారితే శనివారం) రేవతి నక్షత్రయుక్త తులాలగ్న పుష్కరాంశమునందు</p>
+        <p class="inv-h">కళ్యాణ వేదిక</p>
+        <p>వి.టి.ఆర్. గ్రాండ్ ఏ/సి, అగ్రహారం, ఏలూరు</p>
+        <p class="inv-h">రిసెప్షన్ &amp; విందు</p>
+        <p><span class="nw">ది. 18-12-2026</span> శుక్రవారం రాత్రి 7 గంటల నుండి కళ్యాణ వేదిక వద్ద</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE COUPLE ================= -->
+  <section id="couple">
+    <figure class="couple reveal-rise">
+      <div class="aura">
+        <div class="aura-ring" aria-hidden="true"></div>
+        <img id="couple-img" class="fallback" src="../assets/couple.webp" alt="Ram and Indu" decoding="async">
+      </div>
+      <figcaption class="couple-names">
+        <p class="te rv d2 only-groom" lang="te">రామ్ కుమార్ ✦ ఇందు కృష్ణవేణి</p>
+        <p class="te rv d2 only-bride" lang="te">ఇందు కృష్ణవేణి ✦ రామ్ కుమార్</p>
+        <p class="weds rv d3 only-groom">Ram weds Indu</p>
+        <p class="weds rv d3 only-bride">Indu weds Ram</p>
+        <p class="dv rv d4 only-groom" lang="hi">राम कुमार ✦ इंदु कृष्णवेणी</p>
+        <p class="dv rv d4 only-bride" lang="hi">इंदु कृष्णवेणी ✦ राम कुमार</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= THE CELEBRATIONS: deep night, the Revathi star ================= -->
+  <section id="events">
+    <div class="revathi" aria-hidden="true"><span class="rstar"></span><span class="rlabel">Revathi</span></div>
+    <div class="card reveal-rise">
+      <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
+      <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
+      <p class="label rv">The Celebrations · <span class="te">వేడుకలు</span></p>
+      <div class="timeline">
+        <span class="tl-line" aria-hidden="true"></span>
+        <article class="ev ev1">
+          <div class="ev-icon" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30,6 A24,24 0 0 1 30,54 A14,24 0 0 1 30,6 Z" fill="#D4A64A"/></svg></div>
+          <p class="ev-day rv d1">Friday · 18 December 2026</p>
+          <h3 class="rv d1">Reception &amp; Dinner</h3>
+          <p class="ev-te rv d1" lang="te">రిసెప్షన్ &amp; విందు</p>
+          <p class="ev-time rv d2">from 7:00 PM onwards</p>
+        </article>
+        <article class="ev ev2">
+          <div class="ev-icon" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30,4 L35.5,24.5 L56,30 L35.5,35.5 L30,56 L24.5,35.5 L4,30 L24.5,24.5 Z" fill="#B32D2A"/><circle cx="30" cy="30" r="5" fill="#F3D892"/></svg></div>
+          <p class="ev-day rv d3">Friday night · early hours of Saturday, 19 Dec</p>
+          <h3 class="rv d3">Sumuhurtham</h3>
+          <p class="ev-te rv d3" lang="te">సుముహూర్తం</p>
+          <p class="ev-time big rv d4">3:41 AM</p>
+          <p class="ev-astro rv d4">Revathi nakshatra · Tula lagnam</p>
+        </article>
+      </div>
+      <p class="venue-line rv d4">Both at V.T.R. Grand A/C, Agraharam, Eluru</p>
+      <div class="countdown rv d5" id="countdown">
+        <div class="cd"><b id="cd-d">—</b><span>Days</span></div>
+        <div class="cd"><b id="cd-h">—</b><span>Hrs</span></div>
+        <div class="cd"><b id="cd-m">—</b><span>Min</span></div>
+        <div class="cd"><b id="cd-s">—</b><span>Sec</span></div>
+      </div>
+      <p class="cd-cap rv d5">until the sumuhurtham</p>
+      <div class="rv d5" style="margin-top:10px">
+        <button class="btn primary" id="save-date" type="button">Save the dates</button>
+        <button class="btn" id="share" type="button">Share</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THE VENUE ================= -->
+  <section id="venue">
+    <div class="card reveal-tilt">
+      <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
+      <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
+      <p class="label rv">The Venue · <span class="te">కళ్యాణ వేదిక</span></p>
+      <p class="v-name rv d1">V.T.R. Grand A/C</p>
+      <p class="v-te rv d1" lang="te">వి.టి.ఆర్. గ్రాండ్ ఏ/సి</p>
+      <p class="v-addr rv d1">Agraharam, Eluru, Andhra Pradesh</p>
+      <div class="map rv d2" id="map">
+        <div class="map-fallback"><b>V.T.R. Grand A/C</b><span>Agraharam, Eluru — tap “Open in Google Maps” below</span></div>
+        <iframe id="map-iframe" title="Map — V.T.R. Grand A/C, Agraharam, Eluru" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          data-src="https://maps.google.com/maps?q=V.T.R.%20Grand%2C%20Agraharam%2C%20Eluru%2C%20Andhra%20Pradesh&amp;z=15&amp;output=embed"></iframe>
+      </div>
+      <div class="rv d3" style="margin-top:12px">
+        <a class="btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=V.T.R.+Grand+A%2FC+Agraharam+Eluru" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=V.T.R.+Grand+Agraharam+Eluru" target="_blank" rel="noopener">Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WITH LOVE ================= -->
+  <section id="contact">
+    <div class="card reveal-zoom">
+      <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
+      <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
+      <p class="label rv">With love · <span class="te">భవదీయులు</span></p>
+      <div class="only-groom">
+        <p class="host rv d1">Shri Sriram Srinivas<span>&amp; family · Hyderabad</span></p>
+        <p class="host-te rv d1" lang="te">శ్రీరామ్ శ్రీనివాస్ మరియు కుటుంబ సభ్యులు</p>
+        <div class="contacts rv d2">
+          <div class="contact">
+            <a class="btn tel" href="tel:+919542027701">☏ 95420 27701</a>
+            <a class="btn wa" href="https://wa.me/919542027701?text=Namaste!%20We%20will%20happily%20attend%20Ram%20%26%20Indu%27s%20wedding%20in%20Eluru%20%F0%9F%8C%B8" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <div class="contact">
+            <a class="btn tel" href="tel:+919463031377">☏ 94630 31377</a>
+            <a class="btn wa" href="https://wa.me/919463031377?text=Namaste!%20We%20will%20happily%20attend%20Ram%20%26%20Indu%27s%20wedding%20in%20Eluru%20%F0%9F%8C%B8" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <div class="only-bride">
+        <p class="host rv d1">Smt. Anitha Gujjar<span>&amp; Shri Radhanath Gujjar</span></p>
+        <p class="host-te rv d1" lang="te">గుజ్జర్ రాధానాథ్ · శ్రీమతి అనిత</p>
+        <p class="addr rv d1">Near Marwadi Temple, Southern Street, Eluru</p>
+        <div class="contacts rv d2">
+          <div class="contact">
+            <a class="btn tel" href="tel:+919848344581">☏ 98483 44581</a>
+            <a class="btn wa" href="https://wa.me/919848344581?text=Namaste!%20We%20will%20happily%20attend%20Indu%20%26%20Ram%27s%20wedding%20in%20Eluru%20%F0%9F%8C%B8" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <div class="contact">
+            <a class="btn tel" href="tel:+918074939430">☏ 80749 39430</a>
+            <a class="btn wa" href="https://wa.me/918074939430?text=Namaste!%20We%20will%20happily%20attend%20Indu%20%26%20Ram%27s%20wedding%20in%20Eluru%20%F0%9F%8C%B8" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINALE: dawn, akshintalu ================= -->
+  <section class="finale" id="finale">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="grains" id="grains" aria-hidden="true"></div>
+    <p class="fin-label rv">Abhilasha · <span lang="te" style="font-family:var(--te);letter-spacing:.04em">అభిలాష</span></p>
+    <p class="fin-te rv d1" lang="te">మల్లెల వంటి మనస్సులతో, పసుపు పచ్చని అక్షింతలతో, చల్లని దీవెనలతో… నూతన వధూవరులను ఆశీర్వదించి మమ్మానందింపజేయ ప్రార్థన.</p>
+    <p class="fin-en rv d2">With hearts as gentle as jasmine, with turmeric-golden akshintalu and your kindest blessings — we pray you bless the newlyweds and fill our hearts with joy.</p>
+    <p class="awaiting rv d3">Awaiting your gracious presence</p>
+    <p class="compliments only-bride rv d4"><span class="lbl">With best compliments from</span><span class="nw">Smt. Aarti Gujjar &amp;</span> <span class="nw">Shri Pankaj Kumar Gujjar</span><br>and all our near &amp; dear
+      <span class="te" lang="te">గుజ్జర్ &amp; ఇజంతకర్ కుటుంబాలు · శ్రీ పంకజ్ కుమార్ - శ్రీమతి ఆర్తి మరియు బంధుమిత్రుల అభినందనలతో…</span></p>
+    <p class="families rv d5 only-groom">Sriram &amp; Gujjar Families</p>
+    <p class="families rv d5 only-bride">Gujjar &amp; Sriram Families</p>
+    <p class="foot-date rv d5">18 · 19 December 2026 · Eluru</p>
+  </section>
+</main>
+
+<audio id="bgm" src="../music.mp3" loop preload="auto"></audio>
+<button id="music" type="button" aria-label="Play music" title="Play music">
+  <svg class="note" width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+</button>
+<div class="music-hint" id="music-hint">♪ Tap anywhere for music</div>
+
+<script>
+(function () {
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var SIDE = root.getAttribute('data-side');
+
+  /* ---------- sections & reveals (with a safety net for skipped sections) ---------- */
+  var hero = document.getElementById('hero');
+  var secs = Array.prototype.slice.call(document.querySelectorAll('main > section'));
+  var introDone = reduced;   // the hero must never animate behind the doors
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      if (e.target === hero && !introDone) return;
+      e.target.classList.add('in');
+    });
+  }, { threshold: 0.01, rootMargin: '0px 0px -18% 0px' });
+  secs.forEach(function (s) { io.observe(s); });
+  function sweep() {
+    for (var i = 0; i < secs.length; i++) {
+      if (secs[i] === hero && !introDone) continue;
+      if (secs[i].getBoundingClientRect().top < innerHeight * 0.9) secs[i].classList.add('in');
+    }
+  }
+  addEventListener('scroll', sweep, { passive: true });
+  addEventListener('load', sweep);
+  setTimeout(sweep, 1500);
+
+  /* ---------- the temple doors: open by themselves; any gesture only hurries them ---------- */
+  var doors = document.getElementById('doors');
+  function releaseHero() {
+    if (introDone) return;
+    introDone = true;
+    hero.classList.add('in');
+    sweep();
+  }
+  function openDoors() {
+    if (!doors || doors.classList.contains('open')) return;
+    doors.classList.add('lit', 'open');
+    setTimeout(releaseHero, 650);
+    setTimeout(function () { doors.classList.add('gone'); }, 1900);
+    setTimeout(function () { if (doors.parentNode) doors.parentNode.removeChild(doors); doors = null; }, 2800);
+  }
+  if (reduced) {
+    if (doors) doors.parentNode.removeChild(doors);
+  } else {
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+    scrollTo(0, 0);
+    setTimeout(function () { if (doors) doors.classList.add('lit'); }, 450);
+    setTimeout(openDoors, 1700);
+    // only real gestures hurry the doors — never the page's own scroll
+    var hurry = ['wheel', 'touchmove', 'keydown'];
+    function hurryUp() { hurry.forEach(function (e) { removeEventListener(e, hurryUp); }); openDoors(); }
+    setTimeout(function () { hurry.forEach(function (e) { addEventListener(e, hurryUp, { passive: true }); }); }, 350);
+    if (doors) doors.addEventListener('click', openDoors);
+    setTimeout(releaseHero, 4500);   // belt and braces
+  }
+
+  /* ---------- the sky: dusk at the top, deep night at the muhurtham, dawn at the end ---------- */
+  var stops = [
+    { p: 0.00, c: [[22, 15, 51], [59, 29, 77], [122, 53, 80]] },
+    { p: 0.30, c: [[11, 10, 31], [27, 19, 64], [58, 28, 74]] },
+    { p: 0.58, c: [[5, 6, 20], [15, 13, 44], [33, 24, 72]] },
+    { p: 0.80, c: [[24, 28, 70], [78, 48, 98], [176, 96, 92]] },
+    { p: 0.91, c: [[214, 136, 110], [240, 178, 128], [249, 212, 162]] },
+    { p: 1.00, c: [[247, 214, 160], [250, 226, 186], [252, 238, 212]] }
+  ];
+  var starsEl = document.getElementById('stars');
+  function mix(a, b, t) { return Math.round(a + (b - a) * t); }
+  function paintSky() {
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    var p = Math.min(1, Math.max(0, scrollY / max));
+    var i = 0; while (i < stops.length - 2 && p > stops[i + 1].p) i++;
+    var a = stops[i], b = stops[i + 1], t = (p - a.p) / (b.p - a.p);
+    var names = ['--sky-top', '--sky-mid', '--sky-bot'];
+    for (var k = 0; k < 3; k++) {
+      root.style.setProperty(names[k], 'rgb(' + mix(a.c[k][0], b.c[k][0], t) + ',' + mix(a.c[k][1], b.c[k][1], t) + ',' + mix(a.c[k][2], b.c[k][2], t) + ')');
+    }
+    starsEl.style.opacity = p < 0.78 ? 1 : Math.max(0, 1 - (p - 0.78) / 0.12);
+  }
+  var skyRaf = null;
+  addEventListener('scroll', function () { if (!skyRaf) skyRaf = requestAnimationFrame(function () { paintSky(); skyRaf = null; }); }, { passive: true });
+  var lastW = innerWidth;
+  addEventListener('resize', function () { if (Math.abs(innerWidth - lastW) < 2) return; lastW = innerWidth; paintSky(); });
+  addEventListener('load', paintSky);
+  paintSky();
+
+  /* ---------- stars (deterministic, so every reload looks the same) ---------- */
+  var seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  for (var s = 0; s < 64; s++) {
+    var st = document.createElement('div');
+    st.className = 'star';
+    var sz = rnd() < 0.85 ? 1 + rnd() * 1.2 : 2.2 + rnd() * 1.2;
+    st.style.width = st.style.height = sz.toFixed(1) + 'px';
+    st.style.left = (rnd() * 100).toFixed(2) + '%';
+    st.style.top = (rnd() * 72).toFixed(2) + '%';
+    st.style.animationDuration = (2.4 + rnd() * 3.4).toFixed(2) + 's';
+    st.style.animationDelay = (-rnd() * 5).toFixed(2) + 's';
+    starsEl.appendChild(st);
+  }
+
+  /* ---------- the gopuram, built tier by tier ---------- */
+  (function () {
+    var g = document.getElementById('gopuram'); if (!g) return;
+    var base = 422, out = '', tiers = [], yB = 338, wB = 262, h = 40;
+    for (var i = 0; i < 6; i++) { var wT = wB - 26, yT = yB - h; tiers.push([yB, yT, wB, wT]); yB = yT; wB = wT - 6; h = Math.max(28, h - 2); }
+    out += '<path d="M62,' + base + ' L62,338 L338,338 L338,' + base + ' Z" fill="url(#gpFill)" stroke="url(#gpEdge)" stroke-width="1.6"/>';
+    out += '<path d="M58,338 H342" stroke="#D4A64A" stroke-opacity=".6" stroke-width="2.2"/>';
+    tiers.forEach(function (t, i) {
+      var yb = t[0], yt = t[1], wb = t[2], wt = t[3];
+      var xbl = 200 - wb / 2, xbr = 200 + wb / 2, xtl = 200 - wt / 2, xtr = 200 + wt / 2;
+      out += '<path d="M' + xbl + ',' + yb + ' L' + xtl + ',' + yt + ' L' + xtr + ',' + yt + ' L' + xbr + ',' + yb + ' Z" fill="url(#gpFill)" stroke="url(#gpEdge)" stroke-width="1.2"/>';
+      out += '<path d="M' + (xtl - 4) + ',' + yt + ' L' + (xtr + 4) + ',' + yt + '" stroke="#D4A64A" stroke-opacity=".6" stroke-width="2"/>';
+      var n = Math.max(3, Math.round(wt / 32)), step = wt / n;
+      for (var k = 0; k < n; k++) {
+        var cx = xtl + step * (k + 0.5), cy = yt + (yb - yt) * 0.6, r = Math.min(6.5, (yb - yt) * 0.2);
+        out += '<path d="M' + (cx - r) + ',' + (cy + r) + ' L' + (cx - r) + ',' + cy + ' A' + r + ',' + r + ' 0 0 1 ' + (cx + r) + ',' + cy + ' L' + (cx + r) + ',' + (cy + r) + '" fill="none" stroke="#E9C46A" stroke-opacity=".4" stroke-width="1.1"/>';
+        if ((k + i) % 3 === 0) out += '<circle cx="' + cx.toFixed(1) + '" cy="' + (cy + r * 0.35).toFixed(1) + '" r="1.6" fill="#FFD98A" opacity=".9"/>';
+      }
+    });
+    var top = tiers[tiers.length - 1], ty = top[1], tw = top[3], L = 200 - tw / 2 + 4, R = 200 + tw / 2 - 4;
+    out += '<path d="M' + L + ',' + ty + ' V' + (ty - 15) + ' Q' + L + ',' + (ty - 33) + ' ' + (L + 18) + ',' + (ty - 33) + ' H' + (R - 18) + ' Q' + R + ',' + (ty - 33) + ' ' + R + ',' + (ty - 15) + ' V' + ty + ' Z" fill="url(#gpFill)" stroke="url(#gpEdge)" stroke-width="1.4"/>';
+    var kc = 5, kx0 = L + 14, ks = (R - L - 28) / (kc - 1), ky = ty - 33;
+    for (var j = 0; j < kc; j++) {
+      var kx = kx0 + ks * j;
+      out += '<path d="M' + (kx - 4.5) + ',' + ky + ' Q' + (kx - 6) + ',' + (ky - 7) + ' ' + kx + ',' + (ky - 9) + ' Q' + (kx + 6) + ',' + (ky - 7) + ' ' + (kx + 4.5) + ',' + ky + ' Z" fill="#E9C46A"/>';
+      out += '<path d="M' + kx + ',' + (ky - 9) + ' V' + (ky - 18) + '" stroke="#F3D892" stroke-width="1.4"/><circle cx="' + kx + '" cy="' + (ky - 19.5) + '" r="1.9" fill="#FFF1C6"/>';
+    }
+    out += '<path d="M176,' + base + ' V374 Q200,344 224,374 V' + base + ' Z" fill="url(#gpDoor)"/>';
+    out += '<path d="M176,' + base + ' V374 Q200,344 224,374 V' + base + '" fill="none" stroke="#F3D892" stroke-width="1.4"/>';
+    g.innerHTML = out;
+  })();
+
+  /* ---------- language: English / తెలుగు ---------- */
+  var tabs = document.querySelectorAll('.lang-toggle button');
+  function setLang(l) {
+    tabs.forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-lang') === l)); });
+    document.querySelectorAll('.inv[data-lang]').forEach(function (d) { d.hidden = d.getAttribute('data-lang') !== l; });
+  }
+  tabs.forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+
+  /* ---------- the scroll card: drop the clip once it has fully unrolled ---------- */
+  var scrollCard = document.getElementById('scroll');
+  var inv = document.getElementById('invitation');
+  var unrollWatch = new MutationObserver(function () {
+    if (inv.classList.contains('in')) {
+      unrollWatch.disconnect();
+      setTimeout(function () { scrollCard.classList.add('unrolled'); }, reduced ? 0 : 1700);
+    }
+  });
+  unrollWatch.observe(inv, { attributes: true, attributeFilter: ['class'] });
+
+  /* ---------- akshintalu for the dawn ---------- */
+  var grains = document.getElementById('grains');
+  var gcol = ['#E9B53A', '#F2C14E', '#E0A42B', '#F6D06B', '#C0392B'];
+  for (var q = 0; q < 30; q++) {
+    var gr = document.createElement('i');
+    gr.className = 'grain';
+    gr.style.left = (2 + rnd() * 96).toFixed(1) + '%';
+    gr.style.background = gcol[q % 5];
+    if (q % 5 === 4) { gr.style.width = '5px'; gr.style.height = '5px'; }
+    gr.style.animationDuration = (5 + rnd() * 4).toFixed(2) + 's';
+    gr.style.animationDelay = (rnd() * 6).toFixed(2) + 's';
+    grains.appendChild(gr);
+  }
+
+  /* ---------- lazy map ---------- */
+  (function () {
+    var frame = document.getElementById('map'), ifr = document.getElementById('map-iframe');
+    var mio = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      mio.disconnect();
+      ifr.addEventListener('load', function () { frame.classList.add('map-on'); });
+      ifr.src = ifr.getAttribute('data-src');
+    }, { rootMargin: '300px' });
+    mio.observe(frame);
+  })();
+
+  /* ---------- countdown to the sumuhurtham ---------- */
+  var target = new Date('2026-12-19T03:41:00+05:30').getTime();
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function setVal(id, v) {
+    var el = document.getElementById(id);
+    if (el && el.textContent !== v) {
+      el.textContent = v;
+      if (!reduced) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); }
+    }
+  }
+  (function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div class="cd" style="grid-column:1/-1;padding:12px"><b style="font-size:20px">శుభం · शुभम्</b><span>Blessed be the couple</span></div>';
+      return;
+    }
+    setVal('cd-d', String(Math.floor(diff / 864e5)));
+    setVal('cd-h', pad(Math.floor(diff / 36e5) % 24));
+    setVal('cd-m', pad(Math.floor(diff / 6e4) % 60));
+    setVal('cd-s', pad(Math.floor(diff / 1e3) % 60));
+    setTimeout(tick, 1000);
+  })();
+
+  /* ---------- petal burst on buttons ---------- */
+  function burst(el) {
+    if (reduced) return;
+    var r = el.getBoundingClientRect();
+    for (var k = 0; k < 14; k++) {
+      (function (k) {
+        var b = document.createElement('i');
+        b.style.cssText = 'position:fixed;width:11px;height:7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;pointer-events:none;z-index:70;left:' +
+          (r.left + r.width / 2) + 'px;top:' + (r.top + r.height / 2) + 'px;background:' + gcol[k % 5];
+        document.body.appendChild(b);
+        var ang = (k / 14) * Math.PI * 2, dist = 70 + (k % 4) * 24;
+        b.animate([{ transform: 'translate(0,0) rotate(0)', opacity: 1 },
+          { transform: 'translate(' + Math.cos(ang) * dist + 'px,' + (Math.sin(ang) * dist + 60) + 'px) rotate(280deg)', opacity: 0 }],
+          { duration: 900 + (k % 3) * 200, easing: 'cubic-bezier(.2,.6,.4,1)' }).onfinish = function () { b.remove(); };
+      })(k);
+    }
+  }
+
+  /* ---------- save the dates: both events in one calendar file ---------- */
+  document.getElementById('save-date').addEventListener('click', function () {
+    var loc = 'LOCATION:V.T.R. Grand A/C\\, Agraharam\\, Eluru';
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ram-Indu//Wedding//EN', 'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT', 'UID:ram-indu-reception-20261218', 'DTSTAMP:20261123T000000Z',
+      'DTSTART:20261218T133000Z', 'DTEND:20261218T170000Z',
+      'SUMMARY:Reception & Dinner — Ram & Indu', loc, 'DESCRIPTION:Reception & Dinner from 7:00 PM', 'END:VEVENT',
+      'BEGIN:VEVENT', 'UID:ram-indu-sumuhurtham-20261219', 'DTSTAMP:20261123T000000Z',
+      'DTSTART:20261218T221100Z', 'DTEND:20261219T000000Z',
+      'SUMMARY:Sumuhurtham 3:41 AM — Ram & Indu', loc,
+      'DESCRIPTION:Sumuhurtham at 3:41 AM — Friday night\\, early hours of Saturday 19 December', 'END:VEVENT',
+      'END:VCALENDAR'].join('\r\n');
+    var a = document.createElement('a');
+    a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+    a.download = 'Ram-Indu-Wedding.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    burst(this);
+  });
+  document.getElementById('share').addEventListener('click', function () {
+    var data = { title: 'Ram & Indu — Kalyanam', text: 'Join us for the wedding of Ram & Indu — Reception Fri 18 Dec, 7 PM · Sumuhurtham 3:41 AM · V.T.R. Grand, Eluru', url: location.href };
+    if (navigator.share) { navigator.share(data).catch(function () {}); }
+    else if (navigator.clipboard) { navigator.clipboard.writeText(data.url); this.textContent = 'Link copied!'; }
+  });
+  document.querySelectorAll('#contact .btn').forEach(function (b) { b.addEventListener('click', function () { burst(b); }); });
+
+  /* ---------- music: starts on the first real touch, every visit ---------- */
+  (function () {
+    var btn = document.getElementById('music'), hint = document.getElementById('music-hint'), audio = document.getElementById('bgm');
+    var fade = null, playing = false;
+    function ramp(to, ms, done) {
+      clearInterval(fade);
+      var from = audio.volume, t0 = Date.now();
+      fade = setInterval(function () {
+        var k = Math.min(1, (Date.now() - t0) / ms);
+        audio.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+        if (k === 1) { clearInterval(fade); if (done) done(); }
+      }, 40);
+    }
+    function play() {
+      audio.volume = 0;
+      var pr = audio.play();
+      if (pr && pr.catch) pr.catch(function () { playing = false; btn.classList.remove('playing'); });
+      ramp(0.62, 1400);
+      playing = true; btn.classList.add('playing');
+      btn.setAttribute('aria-label', 'Pause music'); btn.title = 'Pause music';
+    }
+    function pause() {
+      ramp(0, 600, function () { audio.pause(); });
+      playing = false; btn.classList.remove('playing');
+      btn.setAttribute('aria-label', 'Play music'); btn.title = 'Play music';
+    }
+    btn.addEventListener('click', function (e) { e.stopPropagation(); playing ? pause() : play(); });
+    addEventListener('keydown', function (e) {
+      if ((e.key === 'm' || e.key === 'M') && !/input|textarea/i.test(e.target.tagName || '')) playing ? pause() : play();
+    });
+    audio.addEventListener('canplay', function once() { audio.removeEventListener('canplay', once); play(); });
+    // listeners stay armed until playback has genuinely started
+    var evs = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown'];
+    function unhook() { evs.forEach(function (e) { removeEventListener(e, kick, true); }); }
+    function kick(e) {
+      if (e && e.target && e.target.closest && e.target.closest('#music')) return;  // the button decides for itself
+      if (!audio.paused) { unhook(); return; }
+      play();
+      setTimeout(function () { if (!audio.paused) unhook(); }, 400);
+    }
+    evs.forEach(function (e) { addEventListener(e, kick, { passive: true, capture: true }); });
+    audio.addEventListener('play', function () { hint.textContent = '♪ Music on — tap to mute'; });
+    setTimeout(function () {
+      hint.textContent = (playing && !audio.paused) ? '♪ Music on — tap to mute' : '♪ Tap anywhere for music';
+      hint.classList.add('show');
+      setTimeout(function () { hint.classList.remove('show'); }, audio.paused ? 8000 : 5200);
+    }, 4600);
+  })();
+})();
+</script>
+</body>
+</html>
