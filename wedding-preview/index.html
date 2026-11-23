@@ -1128,6 +1128,8 @@ html.shot #ashirvadam .as-sp-petals i { animation: asFall var(--dur) linear var(
     linear-gradient(180deg, #520812 0, rgba(82,8,18,0) 160px),
     radial-gradient(150% 95% at 50% 30%, #8C0B17 0%, #6E0A12 60%, #4A0610 100%);
 }
+/* the kalasham's light may spill a few pixels up over the blessings' red, so the two sections meet without an edge (sideways stays clipped) */
+@supports (overflow: clip) { #shubhalekha { overflow-x: clip; overflow-y: visible; } }
 #shubhalekha .sl-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 #shubhalekha .wrap { max-width: 540px; }
 
@@ -1139,7 +1141,9 @@ html.shot #ashirvadam .as-sp-petals i { animation: asFall var(--dur) linear var(
 #shubhalekha .sl-kumbham { position: relative; z-index: 2; width: 100%; height: auto; filter: drop-shadow(0 16px 14px rgba(40, 0, 6, .55)) drop-shadow(0 0 22px rgba(255, 220, 140, .45)); }
 #shubhalekha .sl-glow { position: absolute; z-index: 1; left: 50%; top: 50%; width: 160%; aspect-ratio: 1; transform: translate(-50%, -50%);
   background: radial-gradient(closest-side, rgba(255, 246, 214, .95) 0%, rgba(255, 228, 150, .75) 20%, rgba(255, 190, 80, .38) 42%, rgba(230, 110, 40, .12) 68%, rgba(200, 60, 30, 0) 100%);
-  border-radius: 50%; }
+  border-radius: 50%;
+  /* the light fades out before the top of the section, so there is no edge where the blessings' red meets the card's red */
+  -webkit-mask-image: linear-gradient(180deg, transparent 10%, #000 44%); mask-image: linear-gradient(180deg, transparent 10%, #000 44%); }
 /* a slow light sweep across the brass, clipped to the painted kalasham (the mask is only set, and fetched, once the card is near) */
 #shubhalekha .sl-shine { display: none; position: absolute; z-index: 3; inset: 0; overflow: hidden; pointer-events: none; mix-blend-mode: soft-light; }
 #shubhalekha.sl-go .sl-shine { display: block;
@@ -1433,7 +1437,6 @@ html.shot #shubhalekha .sl-shine { display: none; }
       <div class="mh-date">
         <p class="mh-date-te te" lang="te"><span class="nw">ది. 18-12-2026 శుక్రవారం రాత్రి</span> · <span class="nw">తెల్లవారితే శనివారం</span></p>
         <p class="mh-date-en"><b class="nw">Friday night, 18 December 2026</b><br>early hours of <span class="nw">Saturday, 19 December</span></p>
-        <p class="mh-star"><span class="te nw" lang="te">రేవతి నక్షత్రం · తులా లగ్నం</span> <span class="mh-star-en nw">Revathi nakshatra · Tula lagnam</span></p>
       </div>
 
       <!-- the tera / antarpat held between bride and groom; it is lowered at the muhurtham -->
@@ -1638,9 +1641,6 @@ html.shot #shubhalekha .sl-shine { display: none; }
 #utsavam .mh-date { position: relative; z-index: 2; margin: 2px auto 0; padding: 0 16px; font-size: 18px; line-height: 1.45; color: var(--mh-cream); }
 #utsavam .mh-date-te { margin-bottom: 4px; font-size: 18px; line-height: 1.55; color: #F6D77E; text-wrap: balance; }
 #utsavam .mh-date-en b { font-weight: 700; }
-#utsavam .mh-star { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 12px; margin-top: 4px; font-size: 17px; line-height: 1.5; }
-#utsavam .mh-star .te { color: #F6D77E; }
-#utsavam .mh-star-en { font-style: italic; color: rgba(255, 241, 214, .92); }
 
 /* ---------- the tera: red silk, woven gold border, a zari medallion ---------- */
 #utsavam .mh-tera { position: absolute; inset: -2px 0 0; z-index: 10; pointer-events: none; transform: translate3d(0, calc(100% + 90px), 0); }
