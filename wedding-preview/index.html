@@ -12,7 +12,7 @@
 <meta property="og:description" content="Reception Fri 18 Dec, 7 PM · Sumuhurtham 3:41 AM · V.T.R. Grand A/C, Eluru">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ram-sriram.github.io/indu-and-ram/wedding/">
-<meta property="og:image" content="https://ram-sriram.github.io/indu-and-ram/assets/og-wedding.jpg">
+<meta property="og:image" content="https://ram-sriram.github.io/indu-and-ram/assets/og-wedding-v2.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <script>
@@ -240,6 +240,7 @@ html.shot .sec-title { animation: none !important; }
     </div>
     <p class="hero-te te-display hx" lang="te"><span class="only-groom">రామ్ <i>✦</i> ఇందు</span><span class="only-bride">ఇందు <i>✦</i> రామ్</span></p>
     <p class="hero-kal hx"><span class="te" lang="te">కళ్యాణం</span><i aria-hidden="true"></i><span>Kalyanam</span></p>
+    <p class="hero-date-te te hx" lang="te">18, 19 డిసెంబర్ 2026</p>
     <p class="hero-date hx">18 &amp; 19 December 2026</p>
     <dl class="hero-when hx">
       <div><dt>Reception</dt><dd>Fri 18 Dec, 7 PM</dd><dd class="nt">with dinner</dd></div>
@@ -389,6 +390,9 @@ html:not([data-side="bride"]) #hero .only-bride { display: none; }   /* without 
   background: radial-gradient(circle at 35% 35%, #FFE6EA 0 1px, #F0284A 2.5px, #7A0218 5px); box-shadow: 0 0 0 1.5px #E9C877, 0 0 8px rgba(255,190,90,.6); }
 
 #hero .hero-date { margin-top: clamp(8px, 2svh, 22px); font-weight: 700; font-size: clamp(22px, 6.2vw, 30px); line-height: 1.2; color: #FFF3DC; letter-spacing: .01em; }
+/* the date in Telugu first, the English right under it */
+#hero .hero-date-te { margin-top: clamp(8px, 2svh, 22px); font-size: clamp(19px, 5.4vw, 25px); line-height: 1.35; color: #FFF3DC; }
+#hero .hero-date-te + .hero-date { margin-top: 0; }
 
 #hero .hero-when { display: flex; justify-content: center; align-items: stretch; margin: clamp(6px, 1.5svh, 16px) auto 0; max-width: 400px; }
 #hero .hero-when > div { flex: 1 1 0; padding: 0 10px; }
@@ -448,6 +452,7 @@ html:not([data-side="bride"]) #hero .only-bride { display: none; }   /* without 
 #hero.go .hero-names { --hd: 2.15s; animation-name: heroNames; animation-duration: 1.1s; }
 #hero.go .hero-te { --hd: 2.4s; }
 #hero.go .hero-kal { --hd: 2.55s; }
+#hero.go .hero-date-te { --hd: 2.65s; }
 #hero.go .hero-date { --hd: 2.7s; }
 #hero.go .hero-when { --hd: 2.85s; }
 #hero.go .hero-venue { --hd: 3s; }
