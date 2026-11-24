@@ -650,7 +650,7 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
   })).then(start);
   setTimeout(start, 2000);
 });</script>
-<!-- ===================== 02 · ASHIRVADAM — the blessings: Ganesha first, the parents' blessing, then Shiva & Parvati, larger than life ===================== -->
+<!-- ===================== 02 · ASHIRVADAM — the blessings: Ganesha first, the parents' blessing, then Sita & Rama, larger than life ===================== -->
 <section id="ashirvadam" class="ashirvadam" aria-labelledby="as-title">
   <div class="as-bg" aria-hidden="true"></div>
   <div class="as-band" aria-hidden="true"></div>
@@ -705,7 +705,7 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
     </div>
   </div>
 
-  <!-- 3 · Shiva & Parvati, larger than life: one tall painting in a gold temple arch, lit from Kailasa, and one blessing line -->
+  <!-- 3 · Sita & Rama, larger than life: one tall painting in a gold temple arch and one blessing line -->
   <figure class="as-sp">
     <div class="as-sp-aura" aria-hidden="true"></div>
     <div class="as-sp-glow" aria-hidden="true"></div>
@@ -714,8 +714,8 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
       <div class="as-sp-win">
         <div class="as-sp-canvas">
           <div class="sp-media">
-            <img class="as-sp-img" src="art/web/sp-kalyanam.webp" width="720" height="1280" decoding="async" loading="lazy"
-              alt="Shiva and Parvati exchange garlands before a glowing golden Kailasa, devas on the clouds above and Nandi resting beside them">
+            <img class="as-sp-img" src="art/web/sita-rama-blessing.webp" width="1080" height="1845" decoding="async" loading="lazy"
+              alt="Rama showers turmeric rice talambralu on Sita at their wedding, Lakshmana, Hanuman and the sages watching with folded hands">
           </div>
           <!-- warm light over the painted lamps (positions are in the painting's own coordinates) -->
           <i class="as-sp-lamp" style="--x:16%;--y:61.6%;--s:30%" aria-hidden="true"></i>
@@ -730,8 +730,8 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
     </div>
     <i class="as-sp-gem" aria-hidden="true"></i>
     <figcaption class="as-sp-cap">
-      <span class="as-sp-te te-display" lang="te">శివపార్వతుల ఆశీస్సులతో</span>
-      <span class="as-sp-en">With the blessings of Shiva &amp; Parvati</span>
+      <span class="as-sp-te te-display" lang="te">సీతారాముల ఆశీస్సులతో</span>
+      <span class="as-sp-en">With the blessings of Sita &amp; Rama</span>
       <i class="as-sp-orn" aria-hidden="true"></i>
     </figcaption>
   </figure>
@@ -740,7 +740,7 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
 <style>
 #ashirvadam {
   --as-red: #B3121F; --as-deep: #520812; --as-cream: #FFF3DC; --as-gold: #F6D77E;
-  --sp-h: clamp(460px, 70svh, 640px);           /* the Shiva–Parvati painting: about 70% of the screen */
+  --sp-h: clamp(460px, 70svh, 640px);           /* the Sita–Rama painting: about 70% of the screen */
   padding: 34px 0 0;
   color: var(--as-cream);
   isolation: isolate;
@@ -821,7 +821,7 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
 #ashirvadam .as-amma-en { margin-top: 4px; text-wrap: balance; font-size: 16.5px; line-height: 1.45; color: var(--as-cream); font-style: italic; }
 #ashirvadam .as-amma-en .nw { font-style: normal; font-weight: 700; letter-spacing: .01em; }
 
-/* ---------- 3 · Shiva & Parvati: a tall painting in a gold temple arch ---------- */
+/* ---------- 3 · Sita & Rama: a tall painting in a gold temple arch ---------- */
 #ashirvadam .as-sp { --dome: clamp(110px, 16svh, 150px);
   position: relative; z-index: 1; margin: 34px auto 0; width: min(calc(100% - 24px), calc(var(--sp-h) * .72)); height: var(--sp-h); }
 /* Kailasa's gold spilling out of the arch into the kumkum field */
@@ -852,7 +852,7 @@ html.shot #hero:not(.go) .hero-names .g2 { opacity: 1; }
     left: calc(50cqw - max(50cqw, 28.125cqh)); top: calc((100cqh - max(100cqh, 177.78cqw)) * .2); }
 }
 #ashirvadam .sp-media { position: absolute; inset: 0; overflow: hidden; }
-#ashirvadam .sp-media > img, #ashirvadam .sp-media > video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+#ashirvadam .sp-media > img, #ashirvadam .sp-media > video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 52% 30%; }
 #ashirvadam .as-sp-lamp { position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%;
   pointer-events: none; mix-blend-mode: screen; opacity: .92;
   background: radial-gradient(circle, rgba(255,240,190,.8) 0%, rgba(255,192,90,.45) 16%, rgba(255,146,44,.16) 40%, rgba(255,120,30,0) 66%); }
@@ -979,7 +979,7 @@ html.shot #ashirvadam .as-sp-petals i { animation: asFall var(--dur) linear var(
   }
 
   if (!('IntersectionObserver' in window)) { sp.classList.add('on'); return; }
-  // Shiva & Parvati make their own entrance when the arch reaches the screen
+  // Sita & Rama make their own entrance when the arch reaches the screen
   var eio = new IntersectionObserver(function (es) {
     if (es[0].isIntersecting) { sp.classList.add('on'); eio.disconnect(); }
   }, { rootMargin: '0px 0px -3% 0px' });
