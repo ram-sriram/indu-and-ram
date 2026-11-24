@@ -441,14 +441,15 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
     </div>
   </div>
 </div>
-<audio id="music" src="../music.mp3" preload="auto" loop playsinline></audio>
+<audio id="music" src="../music-wedding-film.mp3" preload="auto" loop playsinline></audio>
 
 <script>
 (function () {
   'use strict';
   /* =====================================================================
-     ONE DETERMINISTIC TIMELINE. seek(ms) sets every visual for time ms.
+     ONE DETERMINISTIC TIMELINE. seek(ms) sets every visual for story time ms.
      No CSS animations or transitions run on the film; randomness is seeded.
+     The film clock is the music's clock; story(f) maps it onto the story (see WARP).
      Live: a requestAnimationFrame loop advances the clock.  ?t=SECONDS freezes a frame.
      Video: window.__prepare() then window.seekTo(ms) per frame (render-any.mjs).
      ===================================================================== */
@@ -462,7 +463,20 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
   var DUR = 41000;
   var SCENES = [0, 4000, 8500, 13500, 18500, 23500, 29500, 34000];   // story segments (bars, taps)
   var END_IN = 38700;                                                     // the end card rises
-  window.__duration = DUR;
+  /* the music sets the pace. Bhagyada Lakshmi Baramma (violin) runs in 8-beat cycles of 5.93 s, and
+     music-wedding-film.mp3 is cut to run in film time: solo violin under the night gopuram, the drums
+     and the refrain arriving with "Ram & Indu", the new line with the curtain opening on Shiva-Parvati,
+     the next cycle with the mandapam, the half cycle with the end card. [story ms, film ms] */
+  var WARP = [[0, 0], [4800, 6340], [24350, 24110], [29900, 30040], [38700, 38900], [41000, 41870]];
+  var FILM = WARP[WARP.length - 1][1];
+  function warp(v, a, b) {
+    for (var i = 1; i < WARP.length - 1 && v > WARP[i][a]; i++);
+    var p = WARP[i - 1], n = WARP[i];
+    return p[b] + (n[b] - p[b]) * clamp((v - p[a]) / (n[a] - p[a]), 0, 1);
+  }
+  function story(f) { return warp(f, 1, 0); }
+  function filmAt(s) { return warp(s, 0, 1); }
+  window.__duration = FILM;
 
   /* ---------- maths ---------- */
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
@@ -1099,7 +1113,7 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
 
   /* ---------- public, deterministic API ---------- */
   var live = { on: false, raf: 0 };
-  window.seekTo = function (ms) { seek(ms); };
+  window.seekTo = function (ms) { seek(story(ms)); };
   window.__prepare = function () {
     stopLive();
     root.classList.add('render');
@@ -1109,7 +1123,7 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
     seek(0);
   };
 
-  /* ---------- live playback ---------- */
+  /* ---------- live playback (t is film time) ---------- */
   var t = 0, amb = 0, last = null, holding = false, hidden = false, ended = false, waitMs = 0;
   var IMGS = [
     $$('#s1 img'), $$('#s3 img'), $$('#s4 img'), $$('#s5 img'), $$('#s6 img'), $$('#s7 img'), $$('#s8 img')
@@ -1117,8 +1131,9 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
   var IMG_AT = [0, 8300, 13000, 18100, 23800, 29200, 33400];
   function sceneOf(ms) { var k = 0; for (var i = 0; i < SCENES.length; i++) if (ms >= SCENES[i]) k = i; return k; }
   function ready(ms) {             // hold the clock (briefly) while the next painting is still downloading
+    var now = story(t);
     for (var i = 0; i < IMG_AT.length; i++) {
-      if (ms + 700 >= IMG_AT[i] && t <= IMG_AT[i] + 400) {
+      if (ms + 700 >= IMG_AT[i] && now <= IMG_AT[i] + 400) {
         var ok = IMGS[i].every(function (im) { return im.complete && im.naturalWidth > 0; });
         if (!ok) return false;
       }
@@ -1131,19 +1146,31 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
     if (!holding && !hidden) {
       amb += dt;
       if (!ended) {
-        if (ready(t + dt) || waitMs > 4500) { t = Math.min(t + dt, DUR); waitMs = 0; }
+        if (ready(story(t + dt)) || waitMs > 4500) { t = Math.min(t + dt, FILM); waitMs = 0; }
         else waitMs += dt;
-        if (t >= DUR) ended = true;
+        if (t >= FILM) ended = true;
       }
     }
-    seek(t, ended ? DUR + (amb - ambAtEnd()) : t);
+    var s = story(t);
+    seek(s, ended ? DUR + (amb - ambAtEnd()) : s);
+    park(); follow();
     live.raf = requestAnimationFrame(frame);
   }
   var _ambEnd = null;
   function ambAtEnd() { if (_ambEnd == null) _ambEnd = amb; return _ambEnd; }
-  function startLive() { if (live.on) return; live.on = true; last = null; live.raf = requestAnimationFrame(frame); }
+  function startLive() {
+    if (live.on) return;
+    live.on = true; last = null;
+    if (musicOn && !audio.paused) t = clamp(audio.currentTime * 1000, 0, 3000);   // music began first: the film joins it
+    live.raf = requestAnimationFrame(frame);
+  }
   function stopLive() { live.on = false; cancelAnimationFrame(live.raf); }
-  function jump(ms) { t = clamp(ms, 0, DUR); ended = t >= DUR; _ambEnd = null; amb = t; waitMs = 0; }
+  function jump(ms) {
+    t = clamp(ms, 0, FILM); ended = t >= FILM; _ambEnd = null; amb = story(t); waitMs = 0;
+    if (musicOn && !audio.paused) cue();
+  }
+  function toScene(k) { jump(k < SCENES.length ? filmAt(SCENES[k]) : FILM); }
+  function back() { var k = sceneOf(story(t)); toScene(story(t) - SCENES[k] > 1200 || k === 0 ? k : k - 1); }
 
   /* taps: right = next, left = previous, hold = pause */
   var taps = $('#taps'), downAt = 0, holdTimer = 0, downX = 0, pointerDown = false, musicConsumed = false;
@@ -1160,12 +1187,11 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
     if (cancelled || consumed) return;                         // the tap that starts the music does only that
     var rect = stage.getBoundingClientRect();
     var x = (downX - rect.left) / rect.width;
-    var k = sceneOf(t);
     if (x < .3) {
-      if (ended) { jump(SCENES[SCENES.length - 1]); return; }
-      jump(t - SCENES[k] > 1200 || k === 0 ? SCENES[k] : SCENES[k - 1]);
+      if (ended) { toScene(SCENES.length - 1); return; }
+      back();
     } else if (!ended) {
-      jump(k + 1 < SCENES.length ? SCENES[k + 1] : DUR);
+      toScene(sceneOf(story(t)) + 1);
     }
   }
   taps.addEventListener('pointerup', function (e) { release(e, false); });
@@ -1173,14 +1199,31 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
   taps.addEventListener('pointerleave', function (e) { if (pointerDown && holding) release(e, true); });
   stage.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight') { var k = sceneOf(t); if (!ended) jump(k + 1 < SCENES.length ? SCENES[k + 1] : DUR); }
-    else if (e.key === 'ArrowLeft') { var k2 = sceneOf(t); jump(t - SCENES[k2] > 1200 || k2 === 0 ? SCENES[k2] : SCENES[k2 - 1]); }
+    if (e.key === 'ArrowRight') { if (!ended) toScene(sceneOf(story(t)) + 1); }
+    else if (e.key === 'ArrowLeft') back();
     else if (e.key === ' ') { holding = !holding; last = null; e.preventDefault(); }
   });
-  document.addEventListener('visibilitychange', function () { hidden = document.hidden; last = null; });
+  document.addEventListener('visibilitychange', function () { hidden = document.hidden; last = null; park(); });
 
   /* music: tries to start by itself; otherwise the first tap anywhere starts it (every visit) */
-  var audio = $('#music'), snd = $('#snd'), hint = $('#hint'), musicOn = false, fade = 0;
+  var audio = $('#music'), snd = $('#snd'), hint = $('#hint'), musicOn = false, fade = 0, parked = false, cuedAt = 0;
+  // the music file runs in film time, so keeping in step is just matching the clocks
+  function cue() { try { audio.currentTime = t / 1000; } catch (e) {} cuedAt = Date.now(); }
+  function follow() {
+    if (!musicOn || audio.paused || ended || Date.now() - cuedAt < 1500) return;
+    if (Math.abs(audio.currentTime - t / 1000) > .25) cue();
+  }
+  function park() {                 // the music waits while the film is held, hidden or waiting for a painting
+    if (!musicOn) return;
+    var stop = hidden || (!ended && (holding || waitMs > 250));
+    if (stop && !audio.paused) { audio.pause(); parked = true; }
+    else if (!stop && parked) {
+      parked = false;
+      if (!ended) cue();
+      var pr = audio.play();
+      if (pr && pr.catch) pr.catch(function () {});
+    }
+  }
   function ramp(to, ms, done) {
     clearInterval(fade);
     var from = audio.volume, t0 = Date.now();
@@ -1191,6 +1234,8 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
     }, 40);
   }
   function playMusic() {
+    if (!ended) cue();
+    parked = false;
     audio.volume = 0;
     var pr = audio.play();
     if (pr && pr.then) pr.then(function () { setMusic(true); ramp(.62, 1400); unhook(); }, function () { setMusic(false); });
@@ -1232,8 +1277,8 @@ html.render #end { padding-top: 22px; padding-bottom: 26px; }
 
   /* ---------- boot ---------- */
   layout();
-  seek(FREEZE !== null ? FREEZE : 0);
-  window.addEventListener('resize', function () { layout(); seek(curT, live.on ? (ended ? DUR + (amb - ambAtEnd()) : t) : curT); });
+  seek(FREEZE !== null ? story(FREEZE) : 0);
+  window.addEventListener('resize', function () { layout(); seek(curT, live.on ? (ended ? DUR + (amb - ambAtEnd()) : curT) : curT); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { measure(); seek(curT); });
   window.addEventListener('load', function () { measure(); seek(curT); });
 
